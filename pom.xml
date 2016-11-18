@@ -9,6 +9,7 @@
     </developers>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <httpclient.version>4.4.1</httpclient.version>
     </properties>
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.linbingcheng</groupId>
@@ -34,8 +35,14 @@
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>4.0-beta1</version>
+            <version>${httpclient.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+            <version>${httpclient.version}</version>
+        </dependency>
+
 
         <!-- log4j -->
         <dependency>
