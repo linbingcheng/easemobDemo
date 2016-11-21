@@ -7,9 +7,12 @@ public interface Contents {
 
     class HttpProtocol{
         public static final String DEFAULT_HTTP_CHATSET = "UTF-8";
+        public static final int CONNECTION_IDLE_TIMEOUT = 30;
         public static final int CONNECTION_TIMEOUT = 5000;
         public static final int SOCKET_TIMEOUT = 5000;
         public static final int CONNECTION_REQUEST_TIME = 1000;
+        public static final int MAX_PER_ROUTE_CONNECTION = 20;
+        public static final int Max_TOTAL_CONNECTION = 500;
         public static final String APPLICATION_JSON = "application/json";
         public static final String APPLICATION_XML = "application/xml";
         public static final String TEXT_PLAIN="text/plain";
