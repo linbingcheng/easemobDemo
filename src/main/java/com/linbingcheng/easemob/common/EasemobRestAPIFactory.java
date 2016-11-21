@@ -23,7 +23,7 @@ public class EasemobRestAPIFactory {
 	
 	public static final String CHATROOM_CLASS = "EasemobChatRoom";
 	
-	private static final String BASE_PACKAGE = "com.easemob.server.example.api.impl";
+	private static final String BASE_PACKAGE = "com.linbingcheng.easemob.api.impl";
 	
 	private static final String METHOD_SET_CONTEXT = "setContext";
 	

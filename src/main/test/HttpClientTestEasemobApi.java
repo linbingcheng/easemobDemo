@@ -13,10 +13,7 @@ public class HttpClientTestEasemobApi {
         EasemobRestAPIFactory factory = ClientContext.getInstance().init(ClientContext.INIT_FROM_PROPERTIES).getAPIFactory();
         ClientContext context = factory.getContext();
         AuthTokenAPI authToken = (AuthTokenAPI) factory.newInstance(EasemobRestAPIFactory.TOKEN_CLASS);
-        String token = String.valueOf(authToken.getAuthToken(context.getClientId(), context.getClientSecret()));
-        System.out.println("++++");
-        System.out.println(token);
-        System.out.println("+++");
+        authToken.getAuthToken(context.getClientId(), context.getClientSecret());
 
     }
 
