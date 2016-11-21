@@ -77,7 +77,6 @@ public class HttpClientRestAPIInvoker implements RestAPIInvoker {
         String cacertFilePath = ClientContext.getInstance().getCacertFilePath();
         String cacertFilePassword = ClientContext.getInstance().getCacertFilePassword();
         HttpClient client = RestAPIUtils.getHttpClient(StringUtils.startsWithIgnoreCase(url, "HTTPS"), cacertFilePath,  cacertFilePassword);
-
         URL target;
         try {
             target = new URL(url);
