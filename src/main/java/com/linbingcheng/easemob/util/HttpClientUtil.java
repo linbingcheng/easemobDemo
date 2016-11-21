@@ -27,7 +27,8 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HttpContext;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.net.ssl.SSLException;
 import javax.net.ssl.SSLHandshakeException;
@@ -44,7 +45,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class HttpClientUtil {
 
-    private static Logger log = Logger.getLogger(HttpClientUtil.class);
+    private static Logger log = LoggerFactory.getLogger(HttpClientUtil.class);
     // httpclient 连接池
     private static PoolingHttpClientConnectionManager connectionManager;
     // 是否输出连接池状态
