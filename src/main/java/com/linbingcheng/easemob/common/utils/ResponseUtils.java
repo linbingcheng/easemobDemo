@@ -1,8 +1,8 @@
 package com.linbingcheng.easemob.common.utils;
 
-import com.easemob.server.example.comm.wrapper.ResponseWrapper;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.linbingcheng.easemob.common.wrapper.ResponseWrapper;
 
 import java.io.IOException;
 

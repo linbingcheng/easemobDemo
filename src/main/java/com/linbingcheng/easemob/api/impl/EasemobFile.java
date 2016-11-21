@@ -1,8 +1,8 @@
 package com.linbingcheng.easemob.api.impl;
 
-import com.easemob.server.example.comm.helper.HeaderHelper;
-import com.easemob.server.example.comm.wrapper.HeaderWrapper;
 import com.linbingcheng.easemob.api.FileAPI;
+import com.linbingcheng.easemob.common.helper.HeaderHelper;
+import com.linbingcheng.easemob.common.wrapper.HeaderWrapper;
 
 import java.io.File;
 

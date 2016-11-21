@@ -1,11 +1,11 @@
 package com.linbingcheng.easemob.api.impl;
 
-import com.easemob.server.example.comm.body.AuthTokenBody;
-import com.easemob.server.example.comm.constant.HTTPMethod;
-import com.easemob.server.example.comm.helper.HeaderHelper;
-import com.easemob.server.example.comm.wrapper.BodyWrapper;
-import com.easemob.server.example.comm.wrapper.HeaderWrapper;
 import com.linbingcheng.easemob.api.AuthTokenAPI;
+import com.linbingcheng.easemob.common.body.AuthTokenBody;
+import com.linbingcheng.easemob.common.constant.HTTPMethod;
+import com.linbingcheng.easemob.common.helper.HeaderHelper;
+import com.linbingcheng.easemob.common.wrapper.BodyWrapper;
+import com.linbingcheng.easemob.common.wrapper.HeaderWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

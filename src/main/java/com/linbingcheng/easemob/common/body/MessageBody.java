@@ -1,16 +1,16 @@
 package com.linbingcheng.easemob.common.body;
 
-import com.easemob.server.example.comm.wrapper.BodyWrapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.linbingcheng.easemob.common.wrapper.BodyWrapper;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Iterator;
 import java.util.Map;
 
-public abstract class MessageBody implements BodyWrapper{
+public abstract class MessageBody implements BodyWrapper {
 	private ObjectNode msgBody;
 
     private String targetType;

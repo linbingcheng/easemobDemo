@@ -1,7 +1,7 @@
 package com.linbingcheng.easemob.common.utils;
 
-import com.easemob.server.example.comm.MyX509TrustManager;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
+import com.linbingcheng.easemob.common.MyX509TrustManager;
 import org.apache.http.client.HttpClient;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.impl.client.CloseableHttpClient;

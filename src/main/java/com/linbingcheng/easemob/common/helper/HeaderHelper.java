@@ -1,6 +1,6 @@
 package com.linbingcheng.easemob.common.helper;
 
-import com.linbingcheng.easemob.common.wrapper.ClientContext;
+import com.linbingcheng.easemob.common.ClientContext;
 import com.linbingcheng.easemob.common.wrapper.HeaderWrapper;
 
 public class HeaderHelper {

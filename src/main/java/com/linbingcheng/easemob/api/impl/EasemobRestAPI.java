@@ -1,8 +1,8 @@
 package com.linbingcheng.easemob.api.impl;
 
-import com.easemob.server.example.comm.ClientContext;
 import com.linbingcheng.easemob.api.RestAPI;
 import com.linbingcheng.easemob.api.RestAPIInvoker;
+import com.linbingcheng.easemob.common.ClientContext;
 
 public abstract class EasemobRestAPI implements RestAPI {
 	

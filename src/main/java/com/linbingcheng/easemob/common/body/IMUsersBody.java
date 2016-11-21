@@ -1,9 +1,9 @@
 package com.linbingcheng.easemob.common.body;
 
-import com.easemob.server.example.comm.wrapper.BodyWrapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ContainerNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.linbingcheng.easemob.common.wrapper.BodyWrapper;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
 package com.linbingcheng.easemob.common.body;
 
-import com.easemob.server.example.comm.constant.MsgType;
 import com.fasterxml.jackson.databind.node.ContainerNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.linbingcheng.easemob.common.constant.MsgType;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Map;

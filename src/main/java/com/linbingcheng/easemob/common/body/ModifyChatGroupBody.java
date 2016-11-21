@@ -1,8 +1,8 @@
 package com.linbingcheng.easemob.common.body;
 
-import com.easemob.server.example.comm.wrapper.BodyWrapper;
 import com.fasterxml.jackson.databind.node.ContainerNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.linbingcheng.easemob.common.wrapper.BodyWrapper;
 import org.apache.commons.lang3.StringUtils;
 
 public class ModifyChatGroupBody implements BodyWrapper {
