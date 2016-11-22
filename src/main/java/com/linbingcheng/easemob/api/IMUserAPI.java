@@ -20,7 +20,7 @@ public interface IMUserAPI {
 	Object createNewIMUserSingle(Object payload);
 
 	/**
-	 * 注册IM用户[批量] <br>
+	 * 注册IM用户[批量] (接口建议在20-60之间。）<br>
 	 * POST
 	 * 
 	 * @param payload
