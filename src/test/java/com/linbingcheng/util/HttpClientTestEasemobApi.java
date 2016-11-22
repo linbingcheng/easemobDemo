@@ -1,3 +1,5 @@
+package java.com.linbingcheng.util;
+
 import com.linbingcheng.easemob.api.AuthTokenAPI;
 import com.linbingcheng.easemob.common.ClientContext;
 import com.linbingcheng.easemob.common.EasemobRestAPIFactory;
