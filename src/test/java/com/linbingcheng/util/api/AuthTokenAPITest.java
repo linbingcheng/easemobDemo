@@ -24,8 +24,6 @@ public class AuthTokenAPITest {
         System.out.println(responseWrapper.getResponseBody());
         System.out.println(responseWrapper.getMessages());
         System.out.println("+++");
-
-
     }
 
 
