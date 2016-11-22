@@ -1,8 +1,9 @@
-package java.com.linbingcheng.util;
+package com.linbingcheng.util;
 
 import com.linbingcheng.easemob.api.AuthTokenAPI;
 import com.linbingcheng.easemob.common.ClientContext;
 import com.linbingcheng.easemob.common.EasemobRestAPIFactory;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -15,8 +16,9 @@ public class HttpClientTestEasemobApi {
         EasemobRestAPIFactory factory = ClientContext.getInstance().init(ClientContext.INIT_FROM_PROPERTIES).getAPIFactory();
         ClientContext context = factory.getContext();
         AuthTokenAPI authToken = (AuthTokenAPI) factory.newInstance(EasemobRestAPIFactory.TOKEN_CLASS);
-        authToken.getAuthToken(context.getClientId(), context.getClientSecret());
-
+        System.out.println("+++++++++");
+        Assert.assertNotNull( authToken.getAuthToken(context.getClientId(), context.getClientSecret()));
+        System.out.println("+++++++++");
     }
 
 
