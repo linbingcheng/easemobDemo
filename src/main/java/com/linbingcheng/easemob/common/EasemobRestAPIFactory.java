@@ -48,7 +48,7 @@ public class EasemobRestAPIFactory {
 			if( null == context || !context.isInitialized() ) {
 				log.warn(MessageTemplate.INVAILID_CONTEXT_MSG);
 				log.warn(MessageTemplate.AUTOMATIC_CONTEXT_MSG);
-				context = ClientContext.getInstance().init(ClientContext.INIT_FROM_PROPERTIES);
+				context = ClientContext.getInstance().init();
 				
 				if( !context.isInitialized() ) {
 					log.error(MessageTemplate.INVAILID_CONTEXT_MSG);
