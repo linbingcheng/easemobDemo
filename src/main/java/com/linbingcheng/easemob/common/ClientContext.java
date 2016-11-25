@@ -10,14 +10,14 @@ import java.util.Properties;
 
 public class ClientContext {
 
-	/*
-	 * Configuration Source Type
+
+    /*
+	 * Implementation 默认配置文件地址
 	 */
-	public static final String INIT_FROM_PROPERTIES = "FILE";
+    public static final String DEFAULT_PROPERTIES = "easemob_appinfo.properties";
 
-	public static final String INIT_FROM_CLASS = "CLASS";
 
-	/*
+    /*
 	 * Implementation List
 	 */
 	public static final String JERSEY_API = "jersey";
@@ -85,30 +85,18 @@ public class ClientContext {
 		return context;
 	}
 
-	public ClientContext init(String type) {
+	public ClientContext init(String configProperties) {
 		if( initialized ) {
 			log.warn("Context has been initialized already, skipped!");
 			return context;
 		}
 
-		if( StringUtils.isBlank(type) ) {
+		if( StringUtils.isBlank(configProperties) ) {
 			log.warn("Context initialization type was set to FILE by default.");
-			type = INIT_FROM_PROPERTIES;
+            configProperties = DEFAULT_PROPERTIES;
 		}
 
-		if( INIT_FROM_PROPERTIES.equalsIgnoreCase(type) ) {
-			initFromPropertiesFile();
-			initialized = Boolean.TRUE;
-		}
-		else if( INIT_FROM_CLASS.equalsIgnoreCase(type) ){
-			initFromStaticClass();
-			initialized = Boolean.TRUE;
-		}
-		else {
-			log.error(MessageTemplate.print(MessageTemplate.UNKNOWN_TYPE_MSG, new String[]{type, "context initialization"}));
-			return context; // Context not initialized
-		}
-
+		initFromPropertiesFile(configProperties);
 		// Initialize the token generator by default
 		if( context.initialized ) {
 			token = new TokenGenerator(context);
@@ -150,13 +138,13 @@ public class ClientContext {
 		return token.request(Boolean.FALSE);
 	}
 
-	private void initFromPropertiesFile() {
+	private void initFromPropertiesFile(String configProperties) {
 		Properties p = new Properties();
 
 		try {
 			InputStream inputStream = ClientContext.class.getClassLoader().getResourceAsStream("easemob_appinfo.properties");
 			p.load(inputStream);
-		} catch (IOException e) {
+        } catch (IOException e) {
 			log.error(MessageTemplate.print(MessageTemplate.FILE_ACCESS_MSG, new String[]{"easemob_appinfo.properties"}));
 			return; // Context not initialized
 		}
@@ -170,7 +158,6 @@ public class ClientContext {
 		String impLib = p.getProperty(APP_IMP_LIB_KEY);
 		String cacertFilePath = p.getProperty(CACERT_FILE_PATH_KEY);
 		String cacertFilePassword = p.getProperty(CACERT_FILE_PASSWORD_KEY);
-
 		if( StringUtils.isBlank(protocal) || StringUtils.isBlank(host) || StringUtils.isBlank(org) || StringUtils.isBlank(app) || StringUtils.isBlank(clientId) || StringUtils.isBlank(clientSecret) || StringUtils.isBlank(impLib) ) {
 			log.error(MessageTemplate.print(MessageTemplate.INVAILID_PROPERTIES_MSG, new String[]{"easemob_appinfo.properties"}));
 			return; // Context not initialized
@@ -185,6 +172,7 @@ public class ClientContext {
 		context.impLib = impLib;
 		context.cacertFilePath = cacertFilePath;
 		context.cacertFilePassword = cacertFilePassword;
+        initialized = Boolean.TRUE;
 
 		log.debug("protocal: " + context.protocal);
 		log.debug("host: " + context.host);
@@ -195,11 +183,6 @@ public class ClientContext {
 		log.debug("cacartFilePath: " + context.cacertFilePath);
 		log.debug("getCacertFilePassword: " + context.cacertFilePassword);
 
-	}
-
-	private ClientContext initFromStaticClass() {
-		// TODO
-		return null;
 	}
 
 	public String getProtocal() {
