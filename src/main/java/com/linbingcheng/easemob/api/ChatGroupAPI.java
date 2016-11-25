@@ -1,13 +1,5 @@
 package com.linbingcheng.easemob.api;
 
-/**
- * This interface is created for RestAPI of Chat Group, it should be
- * synchronized with the API list.
- * 
- * @author Eric23 2016-01-05
- * @see http://docs.easemob.com/doku.php?id=start:100serverintegration:
- *      60groupmgmt
- */
 public interface ChatGroupAPI {
 
 	/**
@@ -95,14 +87,14 @@ public interface ChatGroupAPI {
 	 * @param payload
 	 *            用户ID或用户名，数组形式
 	 * @return
-	 * @see com.easemob.server.example.comm.body.UserNamesBody
+	 * @see com.linbingcheng.easemob.common.body.UserNamesBody
 	 */
 	Object addBatchUsersToChatGroup(String groupId, Object payload);
 
 	/**
 	 * 群组减人[单个] <br>
 	 * DELETE
-	 * 
+	 *
 	 * @param groupId
 	 *            群组标识
 	 * @param userId
@@ -114,7 +106,7 @@ public interface ChatGroupAPI {
 	/**
 	 * 群组减人[批量] <br>
 	 * DELETE
-	 * 
+	 *
 	 * @param groupId
 	 *            群组标识
 	 * @param userIds
@@ -126,20 +118,20 @@ public interface ChatGroupAPI {
 	/**
 	 * 群组转让 <br>
 	 * PUT
-	 * 
+	 *
 	 * @param groupId
 	 *            群组标识
 	 * @param payload
 	 *            新群主ID或用户名
 	 * @return
-     * @see com.easemob.server.example.comm.body.GroupOwnerTransferBody
+     * @see com.linbingcheng.easemob.common.body.GroupOwnerTransferBody
 	 */
 	Object transferChatGroupOwner(String groupId, Object payload);
 
 	/**
 	 * 查询群组黑名单 <br>
 	 * GET
-	 * 
+	 *
 	 * @param groupId
 	 *            群组标识
 	 * @return
@@ -149,7 +141,7 @@ public interface ChatGroupAPI {
 	/**
 	 * 群组黑名单个添加 <br>
 	 * POST
-	 * 
+	 *
 	 * @param groupId
 	 *            群组标识
 	 * @param userId
@@ -161,13 +153,13 @@ public interface ChatGroupAPI {
 	/**
 	 * 群组黑名单批量添加 <br>
 	 * POST
-	 * 
+	 *
 	 * @param groupId
 	 *            群组标识
 	 * @param payload
 	 *            用户ID或用户名，数组形式
 	 * @return
-     * @see com.easemob.server.example.comm.body.UserNamesBody
+     * @see com.linbingcheng.easemob.common.body.UserNamesBody
 	 */
 	Object addBatchBlockUsersToChatGroup(String groupId, Object payload);
 

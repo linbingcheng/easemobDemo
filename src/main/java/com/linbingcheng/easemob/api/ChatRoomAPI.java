@@ -1,13 +1,5 @@
 package com.linbingcheng.easemob.api;
 
-/**
- * This interface is created for RestAPI of Chat Room, it should be synchronized
- * with the API list.
- * 
- * @author Eric23 2016-01-05
- * @see http://docs.easemob.com/doku.php?id=start:100serverintegration:
- *      70chatroommgmt
- */
 public interface ChatRoomAPI {
 	/**
 	 * 创建聊天室 <br>

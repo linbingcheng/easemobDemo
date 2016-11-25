@@ -1,23 +1,6 @@
 package com.linbingcheng.easemob.api;
 
-/**
- * This interface is created for RestAPI of File Upload and Download, it should
- * be synchronized with the API list.
- * 
- * @author Eric23 2016-01-05
- * @see http://docs.easemob.com/doku.php?id=start:100serverintegration:
- *      40fileoperation
- */
 public interface FileAPI {
-
-	/**
-	 * 上传文件 <br>
-	 * POST
-	 * 
-	 * @param file
-	 *            上传的文件对象，可以是地址、流等，以实现类为准
-	 * @return
-	 */
 	Object uploadFile(Object file);
 
 	/**

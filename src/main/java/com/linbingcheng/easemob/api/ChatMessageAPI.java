@@ -1,12 +1,5 @@
 package com.linbingcheng.easemob.api;
 
-/**
- * This interface is created for RestAPI of Chat Messages, it should be
- * synchronized with the API list.
- * 
- * @author Eric23 2016-01-05
- * @see http://docs.easemob.com/doku.php?id=start:100serverintegration:30chatlog
- */
 public interface ChatMessageAPI {
 	/**
 	 * 导出聊天记录，默认返回10条 <br>

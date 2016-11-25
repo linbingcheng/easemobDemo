@@ -1,12 +1,5 @@
 package com.linbingcheng.easemob.api;
 
-/**
- * This interface is created for RestAPI of User Integration, it should be
- * synchronized with the API list.
- * 
- * @author Eric23 2016-01-05
- * @see http://docs.easemob.com/doku.php?id=start:100serverintegration:20users
- */
 public interface IMUserAPI {
 
 	/**
@@ -232,8 +225,6 @@ public interface IMUserAPI {
 	 * @param userName
 	 *            用戶名或用戶ID
 	 * @return
-	 * @see http://docs.easemob.com/doku.php?id=start:100serverintegration:
-	 *      60groupmgmt
 	 */
 	Object getIMUserAllChatGroups(String userName);
 
@@ -244,8 +235,6 @@ public interface IMUserAPI {
 	 * @param userName
 	 *            用戶名或用戶ID
 	 * @return
-	 * @see http://docs.easemob.com/doku.php?id=start:100serverintegration:
-	 *      70chatroommgmt
 	 */
 	Object getIMUserAllChatRooms(String userName);
 }
