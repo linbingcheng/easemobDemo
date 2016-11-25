@@ -85,17 +85,16 @@ public class ClientContext {
 		return context;
 	}
 
+    public ClientContext init(){
+        log.warn("Context initialization type was set to FILE by default.");
+        return init(DEFAULT_PROPERTIES);
+    }
+
 	public ClientContext init(String configProperties) {
 		if( initialized ) {
 			log.warn("Context has been initialized already, skipped!");
 			return context;
 		}
-
-		if( StringUtils.isBlank(configProperties) ) {
-			log.warn("Context initialization type was set to FILE by default.");
-            configProperties = DEFAULT_PROPERTIES;
-		}
-
 		initFromPropertiesFile(configProperties);
 		// Initialize the token generator by default
 		if( context.initialized ) {
@@ -106,8 +105,8 @@ public class ClientContext {
 	}
 
 	public EasemobRestAPIFactory getAPIFactory() {
-		if( !context.isInitialized() ) {
-			log.error(MessageTemplate.INVAILID_CONTEXT_MSG);
+		if( !context.isInitialized()) {
+            log.error(MessageTemplate.INVAILID_CONTEXT_MSG);
 			throw new RuntimeException(MessageTemplate.INVAILID_CONTEXT_MSG);
 		}
 
