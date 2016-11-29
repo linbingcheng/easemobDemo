@@ -13,7 +13,7 @@ public class HttpClientTestEasemobApi {
 
     @Test
     public void token(){
-        EasemobRestAPIFactory factory = ClientContext.getInstance().init(ClientContext.INIT_FROM_PROPERTIES).getAPIFactory();
+        EasemobRestAPIFactory factory = ClientContext.getInstance().init("cc").getAPIFactory();
         ClientContext context = factory.getContext();
         AuthTokenAPI authToken = (AuthTokenAPI) factory.newInstance(EasemobRestAPIFactory.TOKEN_CLASS);
         System.out.println("+++++++++");

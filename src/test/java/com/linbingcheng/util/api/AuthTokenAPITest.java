@@ -14,7 +14,7 @@ public class AuthTokenAPITest {
 
     @Test
     public void token(){
-        EasemobRestAPIFactory factory = ClientContext.getInstance().init(ClientContext.INIT_FROM_PROPERTIES).getAPIFactory();
+        EasemobRestAPIFactory factory = ClientContext.getInstance().init().getAPIFactory();
         ClientContext context = factory.getContext();
         AuthTokenAPI authToken = (AuthTokenAPI) factory.newInstance(EasemobRestAPIFactory.TOKEN_CLASS);
         ResponseWrapper responseWrapper = (ResponseWrapper) authToken.getAuthToken(context.getClientId(), context.getClientSecret());

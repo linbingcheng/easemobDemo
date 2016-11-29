@@ -20,6 +20,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.ParseException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.*;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
@@ -38,6 +39,13 @@ import java.net.URL;
 public class HttpClientRestAPIInvoker implements RestAPIInvoker {
 
     private static final Logger log = LoggerFactory.getLogger(HttpClientRestAPIInvoker.class);
+
+    private static int connectionTimeout = 5000;
+
+    private static int socketTimeout = 5000;
+
+    private static int connectionRequestTime = 1000;
+
 
     public ResponseWrapper sendRequest(String method, String url, HeaderWrapper header, BodyWrapper body, QueryWrapper query) {
 
@@ -90,7 +98,7 @@ public class HttpClientRestAPIInvoker implements RestAPIInvoker {
             return responseWrapper;
         }
 
-        HttpUriRequest request;
+        HttpRequestBase request;
         HttpResponse response;
         try {
             if (method.equals(HTTPMethod.METHOD_POST)) {
@@ -106,6 +114,11 @@ public class HttpClientRestAPIInvoker implements RestAPIInvoker {
                 log.error(msg);
                 throw new RuntimeException(msg);
             }
+            RequestConfig requestConfig = RequestConfig.custom()
+                    .setConnectTimeout(getConnectionTimeout()).setConnectionRequestTimeout(getConnectionRequestTime())
+                    .setSocketTimeout(getSocketTimeout())
+                    .setContentCompressionEnabled(true).build();
+            request.setConfig(requestConfig);
         } catch (URISyntaxException e) {
             responseWrapper.addError(e.getMessage());
             return responseWrapper;
@@ -115,7 +128,6 @@ public class HttpClientRestAPIInvoker implements RestAPIInvoker {
             ((HttpEntityEnclosingRequestBase) request).setEntity(new StringEntity(body.getBody().toString(), "UTF-8"));
         }
         buildHeader(request, header);
-
         try {
             response = client.execute(request);
         } catch (IOException e) {
@@ -124,7 +136,6 @@ public class HttpClientRestAPIInvoker implements RestAPIInvoker {
         }
 
         responseWrapper = readResponse(responseWrapper, response, false);
-
         log.debug("=============Response=============");
         log.debug(responseWrapper.toString());
         log.debug("===========Response End===========");
@@ -301,4 +312,27 @@ public class HttpClientRestAPIInvoker implements RestAPIInvoker {
         return responseWrapper;
     }
 
+    public static int getConnectionTimeout() {
+        return connectionTimeout;
+    }
+
+    public static void setConnectionTimeout(int connectionTimeout) {
+        HttpClientRestAPIInvoker.connectionTimeout = connectionTimeout;
+    }
+
+    public static int getSocketTimeout() {
+        return socketTimeout;
+    }
+
+    public static void setSocketTimeout(int socketTimeout) {
+        HttpClientRestAPIInvoker.socketTimeout = socketTimeout;
+    }
+
+    public static int getConnectionRequestTime() {
+        return connectionRequestTime;
+    }
+
+    public static void setConnectionRequestTime(int connectionRequestTime) {
+        HttpClientRestAPIInvoker.connectionRequestTime = connectionRequestTime;
+    }
 }

@@ -24,7 +24,7 @@ public class IMUserAPITest {
 
     @Before
     public void before(){
-         factory = ClientContext.getInstance().init(ClientContext.INIT_FROM_PROPERTIES).getAPIFactory();
+         factory = ClientContext.getInstance().init().getAPIFactory();
          context = factory.getContext();
          imUserAPI = (IMUserAPI) factory.newInstance(EasemobRestAPIFactory.USER_CLASS);
     }
