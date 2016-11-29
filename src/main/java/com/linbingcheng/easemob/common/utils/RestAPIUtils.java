@@ -52,7 +52,8 @@ public class RestAPIUtils {
     private static int maxPerRoute = 500;
     // 最大连接数
     private static int maxTotal = 200;
-
+    // 初始化标志
+    private static boolean initialized = Boolean.FALSE;
 
     static {
         // 初始化连接池
@@ -69,8 +70,11 @@ public class RestAPIUtils {
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                connectionManager.setMaxTotal(getMaxTotal());
-                connectionManager.setDefaultMaxPerRoute(getMaxPerRoute());
+                if(!initialized){
+                    connectionManager.setMaxTotal(getMaxTotal());
+                    connectionManager.setDefaultMaxPerRoute(getMaxPerRoute());
+                    initialized = Boolean.TRUE;
+                }
                 // 关闭失效的连接
                 connectionManager.closeExpiredConnections();
                 // 关闭N秒内不活动的连接

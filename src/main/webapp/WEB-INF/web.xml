@@ -4,6 +4,10 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+    <context-param>
+        <param-name>EASEMOB_API_CONTEXT</param-name>
+        <param-value>easemob_appinfo.properties</param-value>
+    </context-param>
     <listener>
         <listener-class>com.linbingcheng.easemob.common.listener.InitEasemobAPIContextListener</listener-class>
     </listener>

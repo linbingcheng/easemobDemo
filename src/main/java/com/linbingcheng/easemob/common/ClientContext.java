@@ -1,5 +1,7 @@
 package com.linbingcheng.easemob.common;
 
+import com.linbingcheng.easemob.common.invoker.HttpClientRestAPIInvoker;
+import com.linbingcheng.easemob.common.utils.RestAPIUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +12,14 @@ import java.util.Properties;
 
 public class ClientContext {
 
+
+    private static final Logger log = LoggerFactory.getLogger(ClientContext.class);
+
+    private static ClientContext context = new ClientContext();
+
+    private static EasemobRestAPIFactory factory = null;
+
+    public static Boolean initialized = Boolean.FALSE;
 
     /*
      * Implementation 默认配置文件地址
@@ -59,14 +69,9 @@ public class ClientContext {
 
     private static final String Max_TOTAL_CONNECTION_KEY = "MAX_TOTAL_CONNECTION";
 
-
-    private static final Logger log = LoggerFactory.getLogger(ClientContext.class);
-
-    private static ClientContext context = new ClientContext();
-
-    private static EasemobRestAPIFactory factory = null;
-
-    private static Boolean initialized = Boolean.FALSE;
+    /*
+     * context
+     */
 
     private String protocal;
 
@@ -209,9 +214,12 @@ public class ClientContext {
         context.connectionRequestTime=  StringUtils.isBlank(connectionRequestTime)?context.connectionRequestTime:Integer.valueOf(connectionRequestTime);
         context.maxPerRouteConnetion=  StringUtils.isBlank(maxPerRouteConnetion)?context.maxPerRouteConnetion:Integer.valueOf(maxPerRouteConnetion);
         context.maxTotalConnection=  StringUtils.isBlank(maxTotalConnection)?context.maxTotalConnection:Integer.valueOf(maxTotalConnection);
-//        RestAPIUtils.setIdleTimeOut(getConnectionIdleTimeout());
-//        RestAPIUtils.setMaxPerRoute(getMaxPerRouteConnetion());
-//        RestAPIUtils.setMaxTotal(getMaxTotalConnection());
+        RestAPIUtils.setIdleTimeOut(context.connectionIdleTimeout);
+        RestAPIUtils.setMaxPerRoute(context.maxPerRouteConnetion);
+        RestAPIUtils.setMaxTotal(context.maxTotalConnection);
+        HttpClientRestAPIInvoker.setConnectionRequestTime(context.connectionRequestTime);
+        HttpClientRestAPIInvoker.setConnectionTimeout(context.connectionTimeout);
+        HttpClientRestAPIInvoker.setSocketTimeout(context.socketTimeout);
         initialized = Boolean.TRUE;
         log.debug("protocal: " + context.protocal);
         log.debug("host: " + context.host);
