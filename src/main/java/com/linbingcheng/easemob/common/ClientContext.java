@@ -1,6 +1,5 @@
 package com.linbingcheng.easemob.common;
 
-import com.linbingcheng.easemob.common.utils.RestAPIUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,9 +62,11 @@ public class ClientContext {
 
     private static final Logger log = LoggerFactory.getLogger(ClientContext.class);
 
-    private static ClientContext context;
+    private static ClientContext context = new ClientContext();
 
-    private Boolean initialized = Boolean.FALSE;
+    private static EasemobRestAPIFactory factory = null;
+
+    private static Boolean initialized = Boolean.FALSE;
 
     private String protocal;
 
@@ -99,29 +100,21 @@ public class ClientContext {
 
     private int connectionRequestTime = 1000;
 
-
-
-    private EasemobRestAPIFactory factory;
-
-    private TokenGenerator token; // Wrap the token generator
+    private static TokenGenerator token; // Wrap the token generator
 
     private ClientContext() {
     }
 
     public static ClientContext getInstance() {
-        if (null == context) {
-            context = new ClientContext();
-        }
-
         return context;
     }
 
-    public ClientContext init() {
+    public static ClientContext init() {
         log.warn("Context initialization type was set to FILE by default.");
         return init(DEFAULT_PROPERTIES);
     }
 
-    public ClientContext init(String configProperties) {
+    public static ClientContext init(String configProperties) {
         if (initialized) {
             log.warn("Context has been initialized already, skipped!");
             return context;
@@ -135,17 +128,17 @@ public class ClientContext {
         return context;
     }
 
-    public EasemobRestAPIFactory getAPIFactory() {
+    public static EasemobRestAPIFactory getAPIFactory() {
         if (!context.isInitialized()) {
             log.error(MessageTemplate.INVAILID_CONTEXT_MSG);
             throw new RuntimeException(MessageTemplate.INVAILID_CONTEXT_MSG);
         }
 
-        if (null == this.factory) {
-            this.factory = EasemobRestAPIFactory.getInstance(context);
+        if (null == factory) {
+            factory = EasemobRestAPIFactory.getInstance(context);
         }
 
-        return this.factory;
+        return factory;
     }
 
     public String getSeriveURL() {
@@ -166,7 +159,7 @@ public class ClientContext {
         return token.request(Boolean.FALSE);
     }
 
-    private void initFromPropertiesFile(String configProperties) {
+    private static void initFromPropertiesFile(String configProperties) {
         Properties p = new Properties();
 
         try {
@@ -216,9 +209,9 @@ public class ClientContext {
         context.connectionRequestTime=  StringUtils.isBlank(connectionRequestTime)?context.connectionRequestTime:Integer.valueOf(connectionRequestTime);
         context.maxPerRouteConnetion=  StringUtils.isBlank(maxPerRouteConnetion)?context.maxPerRouteConnetion:Integer.valueOf(maxPerRouteConnetion);
         context.maxTotalConnection=  StringUtils.isBlank(maxTotalConnection)?context.maxTotalConnection:Integer.valueOf(maxTotalConnection);
-        RestAPIUtils.setIdleTimeOut(getConnectionIdleTimeout());
-        RestAPIUtils.setMaxPerRoute(getMaxPerRouteConnetion());
-        RestAPIUtils.setMaxTotal(getMaxTotalConnection());
+//        RestAPIUtils.setIdleTimeOut(getConnectionIdleTimeout());
+//        RestAPIUtils.setMaxPerRoute(getMaxPerRouteConnetion());
+//        RestAPIUtils.setMaxTotal(getMaxTotalConnection());
         initialized = Boolean.TRUE;
         log.debug("protocal: " + context.protocal);
         log.debug("host: " + context.host);
