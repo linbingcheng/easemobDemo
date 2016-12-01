@@ -33,22 +33,22 @@ public class EasemobRestAPIFactory {
 	
 	private static EasemobRestAPIFactory factory;
 	
-	private ClientContext context;
+	private EasemobContext context;
 	
 	private RestAPIInvoker jersey = new JerseyRestAPIInvoker();
 	
 	private RestAPIInvoker httpclient = new HttpClientRestAPIInvoker();
 
-	private EasemobRestAPIFactory(ClientContext context) {
+	private EasemobRestAPIFactory(EasemobContext context) {
 		this.context = context;
 	}
 	
-	public static EasemobRestAPIFactory getInstance(ClientContext context) {
+	public static EasemobRestAPIFactory getInstance(EasemobContext context) {
 		if( null == factory ) {
 			if( null == context || !context.isInitialized() ) {
 				log.warn(MessageTemplate.INVAILID_CONTEXT_MSG);
 				log.warn(MessageTemplate.AUTOMATIC_CONTEXT_MSG);
-				context = ClientContext.getInstance().init();
+				context = EasemobContext.getInstance().init();
 				
 				if( !context.isInitialized() ) {
 					log.error(MessageTemplate.INVAILID_CONTEXT_MSG);
@@ -66,7 +66,7 @@ public class EasemobRestAPIFactory {
 		
 		String impLib = context.getImpLib();
 		
-		if( !ClientContext.JERSEY_API.equals(impLib) && !ClientContext.HTTPCLIENT_API.equals(impLib) ) {
+		if( !EasemobContext.JERSEY_API.equals(impLib) && !EasemobContext.HTTPCLIENT_API.equals(impLib) ) {
 			String msg = MessageTemplate.print(MessageTemplate.UNKNOWN_TYPE_MSG, new String[]{impLib, "restapi implementation"});
 			log.error(msg);
 			throw new RuntimeException(msg);
@@ -90,7 +90,7 @@ public class EasemobRestAPIFactory {
 		
 		// Inject the context and invoker, they are defined in EasemobRestAPI
 		try {
-			targetClass.getMethod(METHOD_SET_CONTEXT, ClientContext.class).invoke(newObj, this.context);
+			targetClass.getMethod(METHOD_SET_CONTEXT, EasemobContext.class).invoke(newObj, this.context);
 		} catch (Exception e) {
 			String msg = MessageTemplate.print(MessageTemplate.ERROR_METHOD_MSG, new String[]{METHOD_SET_CONTEXT});
 			log.error(msg, e);
@@ -98,7 +98,7 @@ public class EasemobRestAPIFactory {
 		}
 		
 		RestAPIInvoker invoker = null;
-		if( ClientContext.HTTPCLIENT_API.equals(context.getImpLib()) ) {
+		if( EasemobContext.HTTPCLIENT_API.equals(context.getImpLib()) ) {
 			invoker = httpclient;
 		}
 		else {
@@ -115,7 +115,7 @@ public class EasemobRestAPIFactory {
 		return newObj;
 	}
 
-	public ClientContext getContext() {
+	public EasemobContext getContext() {
 		return context;
 	}
 	

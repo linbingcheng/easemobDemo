@@ -12,12 +12,12 @@ public class TokenGenerator {
 
     private String accessToken;
     private Long expiredAt = -1L;
-    private ClientContext context;
+    private EasemobContext context;
 
     public TokenGenerator() {
     }
 
-    public TokenGenerator(ClientContext context) {
+    public TokenGenerator(EasemobContext context) {
         this.context = context;
     }
 
@@ -32,8 +32,8 @@ public class TokenGenerator {
             }
 
             AuthTokenAPI authService = (AuthTokenAPI) context.getAPIFactory().newInstance(EasemobRestAPIFactory.TOKEN_CLASS);
-            String clientId = ClientContext.getInstance().getClientId();
-            String clientSecret = ClientContext.getInstance().getClientSecret();
+            String clientId = EasemobContext.getInstance().getClientId();
+            String clientSecret = EasemobContext.getInstance().getClientSecret();
             ResponseWrapper response = (ResponseWrapper) authService.getAuthToken(clientId, clientSecret);
 
             if (null != response && 200 == response.getResponseStatus() && null != response.getResponseBody()) {
@@ -59,7 +59,7 @@ public class TokenGenerator {
         return System.currentTimeMillis() > expiredAt;
     }
 
-    public void setContext(ClientContext context) {
+    public void setContext(EasemobContext context) {
         this.context = context;
     }
 

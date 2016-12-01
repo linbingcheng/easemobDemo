@@ -10,12 +10,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class ClientContext {
+public class EasemobContext {
 
 
-    private static final Logger log = LoggerFactory.getLogger(ClientContext.class);
+    private static final Logger log = LoggerFactory.getLogger(EasemobContext.class);
 
-    private static ClientContext context = new ClientContext();
+    private static EasemobContext context = new EasemobContext();
 
     private static EasemobRestAPIFactory factory = null;
 
@@ -107,19 +107,19 @@ public class ClientContext {
 
     private static TokenGenerator token; // Wrap the token generator
 
-    private ClientContext() {
+    private EasemobContext() {
     }
 
-    public static ClientContext getInstance() {
+    public static EasemobContext getInstance() {
         return context;
     }
 
-    public static ClientContext init() {
+    public static EasemobContext init() {
         log.warn("Context initialization type was set to FILE by default.");
         return init(DEFAULT_PROPERTIES);
     }
 
-    public static ClientContext init(String configProperties) {
+    public static EasemobContext init(String configProperties) {
         if (initialized) {
             log.warn("Context has been initialized already, skipped!");
             return context;
@@ -168,7 +168,7 @@ public class ClientContext {
         Properties p = new Properties();
 
         try {
-            InputStream inputStream = ClientContext.class.getClassLoader().getResourceAsStream("easemob_appinfo.properties");
+            InputStream inputStream = EasemobContext.class.getClassLoader().getResourceAsStream("easemob_appinfo.properties");
             p.load(inputStream);
         } catch (IOException e) {
             log.error(MessageTemplate.print(MessageTemplate.FILE_ACCESS_MSG, new String[]{"easemob_appinfo.properties"}));
@@ -307,7 +307,7 @@ public class ClientContext {
     }
 
     public static void main(String[] args) {
-        ClientContext.getInstance().init(null);
+        EasemobContext.getInstance().init(null);
     }
 
 }
