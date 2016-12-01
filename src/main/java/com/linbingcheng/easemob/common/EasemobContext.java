@@ -129,7 +129,6 @@ public class EasemobContext {
         if (context.initialized) {
             token = new TokenGenerator(context);
         }
-
         return context;
     }
 
