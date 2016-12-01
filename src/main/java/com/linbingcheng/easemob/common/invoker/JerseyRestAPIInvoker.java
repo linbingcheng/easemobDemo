@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.linbingcheng.easemob.api.RestAPIInvoker;
-import com.linbingcheng.easemob.common.ClientContext;
+import com.linbingcheng.easemob.common.EasemobContext;
 import com.linbingcheng.easemob.common.MessageTemplate;
 import com.linbingcheng.easemob.common.constant.HTTPMethod;
 import com.linbingcheng.easemob.common.utils.RestAPIUtils;
@@ -73,8 +73,8 @@ public class JerseyRestAPIInvoker implements RestAPIInvoker {
         log.debug("Query: " + query);
         log.debug("===========Request End===========");
 
-        String cacertFilePath = ClientContext.getInstance().getCacertFilePath();
-        String cacertFilePassword = ClientContext.getInstance().getCacertFilePassword();
+        String cacertFilePath = EasemobContext.getInstance().getCacertFilePath();
+        String cacertFilePassword = EasemobContext.getInstance().getCacertFilePassword();
         JerseyClient client = RestAPIUtils.getJerseyClient(StringUtils.startsWithIgnoreCase(url, "HTTPS"), cacertFilePath, cacertFilePassword);
         JerseyWebTarget target = client.target(url);
 
@@ -148,8 +148,8 @@ public class JerseyRestAPIInvoker implements RestAPIInvoker {
         log.debug("File: " + ((null == file) ? "" : file.getName()));
         log.debug("===========Request End===========");
 
-        String cacertFilePath = ClientContext.getInstance().getCacertFilePath();
-        String cacertFilePassword = ClientContext.getInstance().getCacertFilePassword();
+        String cacertFilePath = EasemobContext.getInstance().getCacertFilePath();
+        String cacertFilePassword = EasemobContext.getInstance().getCacertFilePassword();
         JerseyClient client = RestAPIUtils.getJerseyClient(StringUtils.startsWithIgnoreCase(url, "HTTPS"), cacertFilePath, cacertFilePassword);
         JerseyWebTarget target = client.target(url);
 
@@ -211,8 +211,8 @@ public class JerseyRestAPIInvoker implements RestAPIInvoker {
         log.debug("Header: " + header);
         log.debug("===========Request End===========");
 
-        String cacertFilePath = ClientContext.getInstance().getCacertFilePath();
-        String cacertFilePassword = ClientContext.getInstance().getCacertFilePassword();
+        String cacertFilePath = EasemobContext.getInstance().getCacertFilePath();
+        String cacertFilePassword = EasemobContext.getInstance().getCacertFilePassword();
         JerseyClient client = RestAPIUtils.getJerseyClient(StringUtils.startsWithIgnoreCase(url, "HTTPS"), cacertFilePath, cacertFilePassword);
         JerseyWebTarget target = client.target(url);
 

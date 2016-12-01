@@ -2,21 +2,21 @@ package com.linbingcheng.easemob.api.impl;
 
 import com.linbingcheng.easemob.api.RestAPI;
 import com.linbingcheng.easemob.api.RestAPIInvoker;
-import com.linbingcheng.easemob.common.ClientContext;
+import com.linbingcheng.easemob.common.EasemobContext;
 
 public abstract class EasemobRestAPI implements RestAPI {
 	
-	private ClientContext context;
+	private EasemobContext context;
 	
 	private RestAPIInvoker invoker;
 
 	public abstract String getResourceRootURI();
 	
-	public ClientContext getContext() {
+	public EasemobContext getContext() {
 		return context;
 	}
 
-	public void setContext(ClientContext context) {
+	public void setContext(EasemobContext context) {
 		this.context = context;
 	}
 

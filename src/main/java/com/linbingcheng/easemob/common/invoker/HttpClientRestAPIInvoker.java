@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.linbingcheng.easemob.api.RestAPIInvoker;
-import com.linbingcheng.easemob.common.ClientContext;
+import com.linbingcheng.easemob.common.EasemobContext;
 import com.linbingcheng.easemob.common.MessageTemplate;
 import com.linbingcheng.easemob.common.constant.HTTPMethod;
 import com.linbingcheng.easemob.common.utils.RestAPIUtils;
@@ -87,8 +87,8 @@ public class HttpClientRestAPIInvoker implements RestAPIInvoker {
         log.debug("===========Request End===========");
 
         url = buildQuery(url, query);
-        String cacertFilePath = ClientContext.getInstance().getCacertFilePath();
-        String cacertFilePassword = ClientContext.getInstance().getCacertFilePassword();
+        String cacertFilePath = EasemobContext.getInstance().getCacertFilePath();
+        String cacertFilePassword = EasemobContext.getInstance().getCacertFilePassword();
         HttpClient client = RestAPIUtils.getHttpClient(StringUtils.startsWithIgnoreCase(url, "HTTPS"), cacertFilePath,  cacertFilePassword);
         URL target;
         try {
@@ -146,8 +146,8 @@ public class HttpClientRestAPIInvoker implements RestAPIInvoker {
         ResponseWrapper responseWrapper = new ResponseWrapper();
         ObjectNode responseNode = JsonNodeFactory.instance.objectNode();
         responseWrapper.setResponseBody(responseNode);
-        String cacertFilePath = ClientContext.getInstance().getCacertFilePath();
-        String cacertFilePassword = ClientContext.getInstance().getCacertFilePassword();
+        String cacertFilePath = EasemobContext.getInstance().getCacertFilePath();
+        String cacertFilePassword = EasemobContext.getInstance().getCacertFilePassword();
         CloseableHttpClient client = (CloseableHttpClient) RestAPIUtils.getHttpClient(StringUtils.startsWithIgnoreCase(url, "HTTPS"), cacertFilePath, cacertFilePassword);
         CloseableHttpResponse response = null;
 
@@ -208,8 +208,8 @@ public class HttpClientRestAPIInvoker implements RestAPIInvoker {
         ResponseWrapper responseWrapper = new ResponseWrapper();
         ObjectNode responseNode = JsonNodeFactory.instance.objectNode();
         responseWrapper.setResponseBody(responseNode);
-        String cacertFilePath = ClientContext.getInstance().getCacertFilePath();
-        String cacertFilePassword = ClientContext.getInstance().getCacertFilePassword();
+        String cacertFilePath = EasemobContext.getInstance().getCacertFilePath();
+        String cacertFilePassword = EasemobContext.getInstance().getCacertFilePassword();
         CloseableHttpClient client = (CloseableHttpClient) RestAPIUtils.getHttpClient(StringUtils.startsWithIgnoreCase(url, "HTTPS"), cacertFilePath, cacertFilePassword);
 
         if (StringUtils.isBlank(url)) {

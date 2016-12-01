@@ -1,11 +1,11 @@
 package com.linbingcheng.easemob.common.helper;
 
-import com.linbingcheng.easemob.common.ClientContext;
+import com.linbingcheng.easemob.common.EasemobContext;
 import com.linbingcheng.easemob.common.wrapper.HeaderWrapper;
 
 public class HeaderHelper {
 	
-	private static ClientContext context = ClientContext.getInstance();
+	private static EasemobContext context = EasemobContext.getInstance();
 	
 	public static HeaderWrapper getDefaultHeader() {
 		return HeaderWrapper.newInstance().addJsonContentHeader();
