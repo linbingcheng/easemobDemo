@@ -24,7 +24,7 @@ public class EasemobContext {
     /*
      * Implementation 默认配置文件地址
 	 */
-    public static final String DEFAULT_PROPERTIES = "easemob_appinfo.properties";
+    public static final String DEFAULT_PROPERTIES = "easemob/easemob_appinfo.properties";
 
 
     /*
@@ -167,10 +167,10 @@ public class EasemobContext {
         Properties p = new Properties();
 
         try {
-            InputStream inputStream = EasemobContext.class.getClassLoader().getResourceAsStream("easemob_appinfo.properties");
+            InputStream inputStream = EasemobContext.class.getClassLoader().getResourceAsStream("easemob/easemob_appinfo.properties");
             p.load(inputStream);
         } catch (IOException e) {
-            log.error(MessageTemplate.print(MessageTemplate.FILE_ACCESS_MSG, new String[]{"easemob_appinfo.properties"}));
+            log.error(MessageTemplate.print(MessageTemplate.FILE_ACCESS_MSG, new String[]{"easemob/easemob_appinfo.properties"}));
             return; // Context not initialized
         }
 
@@ -192,7 +192,7 @@ public class EasemobContext {
         String maxTotalConnection = p.getProperty(Max_TOTAL_CONNECTION_KEY);
         if (StringUtils.isBlank(protocal)
                 || StringUtils.isBlank(host) || StringUtils.isBlank(org) || StringUtils.isBlank(app) || StringUtils.isBlank(clientId) || StringUtils.isBlank(clientSecret) || StringUtils.isBlank(impLib)) {
-            log.error(MessageTemplate.print(MessageTemplate.INVAILID_PROPERTIES_MSG, new String[]{"easemob_appinfo.properties"}));
+            log.error(MessageTemplate.print(MessageTemplate.INVAILID_PROPERTIES_MSG, new String[]{"easemob/easemob_appinfo.properties"}));
             return; // Context not initialized
         }
 

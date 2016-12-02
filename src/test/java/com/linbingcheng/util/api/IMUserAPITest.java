@@ -1,7 +1,7 @@
 package com.linbingcheng.util.api;
 
 import com.linbingcheng.easemob.api.IMUserAPI;
-import com.linbingcheng.easemob.common.ClientContext;
+import com.linbingcheng.easemob.common.EasemobContext;
 import com.linbingcheng.easemob.common.EasemobRestAPIFactory;
 import com.linbingcheng.easemob.common.body.IMUserBody;
 import com.linbingcheng.easemob.common.body.IMUsersBody;
@@ -19,12 +19,12 @@ import java.util.List;
 public class IMUserAPITest {
 
     private EasemobRestAPIFactory factory = null;
-    private ClientContext context = null;
+    private EasemobContext context = null;
     private IMUserAPI imUserAPI = null;
 
     @Before
     public void before(){
-         factory = ClientContext.getInstance().init().getAPIFactory();
+         factory = EasemobContext.getInstance().init().getAPIFactory();
          context = factory.getContext();
          imUserAPI = (IMUserAPI) factory.newInstance(EasemobRestAPIFactory.USER_CLASS);
     }

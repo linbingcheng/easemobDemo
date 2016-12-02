@@ -1,14 +1,74 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
-
+<?xml version="1.0" encoding="UTF-8"?>
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
     <context-param>
         <param-name>EASEMOB_API_CONTEXT</param-name>
-        <param-value>easemob_appinfo.properties</param-value>
+        <param-value>easemob/easemob_appinfo.properties</param-value>
     </context-param>
     <listener>
         <listener-class>com.linbingcheng.easemob.common.listener.InitEasemobAPIContextListener</listener-class>
     </listener>
+    <!-- 添加对spring的支持 -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath*:system/applicationContext-*.xml </param-value>
+    </context-param>
+
+    <!-- Spring 刷新Introspector防止由于Struts和Quartz等框架在项目关闭时没有回收引用照成内存泄漏 -->
+    <listener>
+        <listener-class>
+            org.springframework.web.util.IntrospectorCleanupListener
+        </listener-class>
+    </listener>
+
+    <!-- 获取请求上下文监听器 -->
+    <listener>
+        <listener-class>
+            org.springframework.web.context.request.RequestContextListener
+        </listener-class>
+    </listener>
+    <!-- 添加springMVC前端控制器 -->
+    <servlet>
+        <servlet-name>springMVC</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:system/springmvc-servlet.xml</param-value>
+        </init-param>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>springMVC</servlet-name>
+        <url-pattern>*.action</url-pattern>
+    </servlet-mapping>
+
+    <!-- 添加UTF-8编码支持 -->
+    <filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <!-- 无论客户端请求是否包含了编码，都用过滤器里的编码来解析请求 -->
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <servlet-name>springMVC</servlet-name>
+    </filter-mapping>
+
+
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
 </web-app>
