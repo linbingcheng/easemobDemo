@@ -84,7 +84,6 @@
             <artifactId>mybatis-spring</artifactId>
             <version>1.2.3</version>
         </dependency>
-
         <!--DataBase-数据库连接 mysql包-->
         <dependency>
             <groupId>mysql</groupId>
