@@ -8,10 +8,15 @@
   <sql id="Base_Column_List">
     id, name
   </sql>
+
+    <sql id="selectTable">
+        (SELECT  id, name FROM TEST)
+    </sql>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from test
+    from  <include refid="selectTable" />
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

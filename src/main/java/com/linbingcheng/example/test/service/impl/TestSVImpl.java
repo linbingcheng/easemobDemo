@@ -18,6 +18,10 @@ public class TestSVImpl implements ITestSV {
         testMapper.insert(test);
     }
 
+    public Test getTest(Integer id) {
+        return testMapper.selectByPrimaryKey(id);
+    }
+
     public TestMapper getTestMapper() {
         return testMapper;
     }

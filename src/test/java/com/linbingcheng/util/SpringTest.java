@@ -33,4 +33,9 @@ public class SpringTest {
         testSV.insert(t);
     }
 
+    @Test
+    public void testGetTest(){
+        System.out.println(testSV.getTest(2));
+    }
+
 }
