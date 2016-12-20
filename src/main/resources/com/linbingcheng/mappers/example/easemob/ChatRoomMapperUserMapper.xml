@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linbingcheng.example.easemob.dao.ChatRoomMapperUserMapper">
+    <resultMap id="BaseResultMap" type="com.linbingcheng.example.easemob.model.ChatRoomMapperUserKey">
+        <id column="chat_room_id" jdbcType="VARCHAR" property="chatRoomId"/>
+        <id column="user_id" jdbcType="VARCHAR" property="userId"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="com.linbingcheng.example.easemob.model.ChatRoomMapperUserKey">
+    delete from easemob_chatroom_affiliation
+    where chat_room_id = #{chatRoomId,jdbcType=VARCHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.linbingcheng.example.easemob.model.ChatRoomMapperUserKey">
+    insert into easemob_chatroom_affiliation (chat_room_id, user_id)
+    values (#{chatRoomId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.linbingcheng.example.easemob.model.ChatRoomMapperUserKey">
+        insert into easemob_chatroom_affiliation
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="chatRoomId != null">
+                chat_room_id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="chatRoomId != null">
+                #{chatRoomId,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+</mapper>

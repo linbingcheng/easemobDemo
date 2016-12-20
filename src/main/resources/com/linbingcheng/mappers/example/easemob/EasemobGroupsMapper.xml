@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linbingcheng.example.easemob.dao.EasemobGroupsMapper">
+    <cache eviction="FIFO" flushInterval="600000" size="512" readOnly="true"/>
+    <resultMap id="BaseResultMap" type="com.linbingcheng.example.easemob.model.EasemobGroups">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="is_public" jdbcType="BIT" property="isPublic"/>
+        <result column="membersonly" jdbcType="BIT" property="membersonly"/>
+        <result column="allowinvites" jdbcType="BIT" property="allowinvites"/>
+        <result column="maxusers" jdbcType="INTEGER" property="maxusers"/>
+        <result column="affiliations_count" jdbcType="INTEGER" property="affiliationsCount"/>
+        <result column="owner" jdbcType="VARCHAR" property="owner"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <collection property="affiliations" column="id" ofType="arraylist"
+                    select="com.linbingcheng.example.easemob.dao.EasemobGroupsMapper.selectAffiliationsByPrimaryKey">
+        </collection>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, name, description, is_public, membersonly, allowinvites, maxusers, affiliations_count, 
+    owner, create_time
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from easemob_groups
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectAffiliationsByPrimaryKey" parameterType="java.lang.String"
+            resultMap="com.linbingcheng.example.easemob.dao.EasemobUserMapper.BaseResultMap">
+        SELECT
+        eu.id, eu.user_id, eu.username, eu.password, eu.nick_name, eu.create_time
+        FROM easemob_groups_affiliation ega LEFT JOIN easemob_users eu ON
+        ega.user_id = eu.id WHERE ega.groups_id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from easemob_groups
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.linbingcheng.example.easemob.model.EasemobGroups">
+    insert into easemob_groups (id, name, description, 
+      is_public, membersonly, allowinvites, 
+      maxusers, affiliations_count, owner, 
+      create_time)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{isPublic,jdbcType=BIT}, #{membersonly,jdbcType=BIT}, #{allowinvites,jdbcType=BIT}, 
+      #{maxusers,jdbcType=INTEGER}, #{affiliationsCount,jdbcType=INTEGER}, #{owner,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.linbingcheng.example.easemob.model.EasemobGroups">
+        insert into easemob_groups
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="isPublic != null">
+                is_public,
+            </if>
+            <if test="membersonly != null">
+                membersonly,
+            </if>
+            <if test="allowinvites != null">
+                allowinvites,
+            </if>
+            <if test="maxusers != null">
+                maxusers,
+            </if>
+            <if test="affiliationsCount != null">
+                affiliations_count,
+            </if>
+            <if test="owner != null">
+                owner,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="isPublic != null">
+                #{isPublic,jdbcType=BIT},
+            </if>
+            <if test="membersonly != null">
+                #{membersonly,jdbcType=BIT},
+            </if>
+            <if test="allowinvites != null">
+                #{allowinvites,jdbcType=BIT},
+            </if>
+            <if test="maxusers != null">
+                #{maxusers,jdbcType=INTEGER},
+            </if>
+            <if test="affiliationsCount != null">
+                #{affiliationsCount,jdbcType=INTEGER},
+            </if>
+            <if test="owner != null">
+                #{owner,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.linbingcheng.example.easemob.model.EasemobGroups">
+        update easemob_groups
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="isPublic != null">
+                is_public = #{isPublic,jdbcType=BIT},
+            </if>
+            <if test="membersonly != null">
+                membersonly = #{membersonly,jdbcType=BIT},
+            </if>
+            <if test="allowinvites != null">
+                allowinvites = #{allowinvites,jdbcType=BIT},
+            </if>
+            <if test="maxusers != null">
+                maxusers = #{maxusers,jdbcType=INTEGER},
+            </if>
+            <if test="affiliationsCount != null">
+                affiliations_count = #{affiliationsCount,jdbcType=INTEGER},
+            </if>
+            <if test="owner != null">
+                owner = #{owner,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.linbingcheng.example.easemob.model.EasemobGroups">
+    update easemob_groups
+    set name = #{name,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      is_public = #{isPublic,jdbcType=BIT},
+      membersonly = #{membersonly,jdbcType=BIT},
+      allowinvites = #{allowinvites,jdbcType=BIT},
+      maxusers = #{maxusers,jdbcType=INTEGER},
+      affiliations_count = #{affiliationsCount,jdbcType=INTEGER},
+      owner = #{owner,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

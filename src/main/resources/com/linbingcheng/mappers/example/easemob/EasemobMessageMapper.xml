@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linbingcheng.example.easemob.dao.EasemobMessageMapper">
+    <resultMap id="BaseResultMap" type="com.linbingcheng.example.easemob.model.EasemobMessage">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="from_user" jdbcType="VARCHAR" property="fromUser"/>
+        <result column="target_type" jdbcType="INTEGER" property="targetType"/>
+        <result column="send_date" jdbcType="TIMESTAMP" property="sendDate"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
+               type="com.linbingcheng.example.easemob.model.EasemobMessage">
+        <result column="msg" jdbcType="LONGVARCHAR" property="msg"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, from_user, target_type, send_date
+    </sql>
+    <sql id="Blob_Column_List">
+        msg
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from easemob_message
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from easemob_message
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.linbingcheng.example.easemob.model.EasemobMessage">
+        insert into easemob_message (id, from_user, target_type,
+        send_date, msg)
+        values (#{id,jdbcType=VARCHAR}, #{fromUser,jdbcType=VARCHAR}, #{targetType,jdbcType=INTEGER},
+        #{sendDate,jdbcType=TIMESTAMP}, #{msg,jdbcType=LONGVARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.linbingcheng.example.easemob.model.EasemobMessage">
+        insert into easemob_message
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="fromUser != null">
+                from_user,
+            </if>
+            <if test="targetType != null">
+                target_type,
+            </if>
+            <if test="sendDate != null">
+                send_date,
+            </if>
+            <if test="msg != null">
+                msg,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="fromUser != null">
+                #{fromUser,jdbcType=VARCHAR},
+            </if>
+            <if test="targetType != null">
+                #{targetType,jdbcType=INTEGER},
+            </if>
+            <if test="sendDate != null">
+                #{sendDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="msg != null">
+                #{msg,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.linbingcheng.example.easemob.model.EasemobMessage">
+        update easemob_message
+        <set>
+            <if test="fromUser != null">
+                from_user = #{fromUser,jdbcType=VARCHAR},
+            </if>
+            <if test="targetType != null">
+                target_type = #{targetType,jdbcType=INTEGER},
+            </if>
+            <if test="sendDate != null">
+                send_date = #{sendDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="msg != null">
+                msg = #{msg,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.linbingcheng.example.easemob.model.EasemobMessage">
+        update easemob_message
+        set from_user = #{fromUser,jdbcType=VARCHAR},
+        target_type = #{targetType,jdbcType=INTEGER},
+        send_date = #{sendDate,jdbcType=TIMESTAMP},
+        msg = #{msg,jdbcType=LONGVARCHAR}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.linbingcheng.example.easemob.model.EasemobMessage">
+        update easemob_message
+        set from_user = #{fromUser,jdbcType=VARCHAR},
+        target_type = #{targetType,jdbcType=INTEGER},
+        send_date = #{sendDate,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+</mapper>

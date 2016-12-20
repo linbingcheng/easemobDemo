@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linbingcheng.example.easemob.dao.GroupsMapperUserMapper">
+    <resultMap id="BaseResultMap" type="com.linbingcheng.example.easemob.model.GroupsMapperUserKey">
+        <id column="groups_id" jdbcType="VARCHAR" property="groupsId"/>
+        <id column="user_id" jdbcType="VARCHAR" property="userId"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="com.linbingcheng.example.easemob.model.GroupsMapperUserKey">
+    delete from easemob_groups_affiliation
+    where groups_id = #{groupsId,jdbcType=VARCHAR}
+      and user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.linbingcheng.example.easemob.model.GroupsMapperUserKey">
+    insert into easemob_groups_affiliation (groups_id, user_id)
+    values (#{groupsId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.linbingcheng.example.easemob.model.GroupsMapperUserKey">
+        insert into easemob_groups_affiliation
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="groupsId != null">
+                groups_id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="groupsId != null">
+                #{groupsId,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+</mapper>
