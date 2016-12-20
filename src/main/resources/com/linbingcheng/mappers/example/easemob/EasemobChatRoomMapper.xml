@@ -11,6 +11,9 @@
         <result column="affiliations_count" jdbcType="INTEGER" property="affiliationsCount"/>
         <result column="owner" jdbcType="VARCHAR" property="owner"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <collection property="affiliations" column="id" ofType="arraylist"
+                    select="selectAffiliationsByPrimaryKey">
+        </collection>
     </resultMap>
     <sql id="Base_Column_List">
         id, name, description, maxusers, affiliations_count, owner, create_time

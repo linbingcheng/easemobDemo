@@ -89,7 +89,7 @@ public class HttpClientRestAPIInvoker implements RestAPIInvoker {
         url = buildQuery(url, query);
         String cacertFilePath = EasemobContext.getInstance().getCacertFilePath();
         String cacertFilePassword = EasemobContext.getInstance().getCacertFilePassword();
-        HttpClient client = RestAPIUtils.getHttpClient(StringUtils.startsWithIgnoreCase(url, "HTTPS"), cacertFilePath,  cacertFilePassword);
+        HttpClient client = RestAPIUtils.getHttpClient(StringUtils.startsWithIgnoreCase(url, "HTTPS"), cacertFilePath, cacertFilePassword);
         URL target;
         try {
             target = new URL(url);
@@ -266,7 +266,7 @@ public class HttpClientRestAPIInvoker implements RestAPIInvoker {
                 url += nameValuePair.getName() + "=" + nameValuePair.getValue();
                 url += "&";
             }
-            url = url.substring(0, url.length()-1);
+            url = url.substring(0, url.length() - 1);
         }
         return url;
     }

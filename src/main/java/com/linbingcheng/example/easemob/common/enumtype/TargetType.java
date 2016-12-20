@@ -10,16 +10,19 @@ public enum TargetType {
     chatrooms(3);
 
     private int value;
-    private TargetType(int value){
-            this.value = value;
+
+    private TargetType(int value) {
+        this.value = value;
     }
-    public int getValue(){
+
+    public int getValue() {
         return this.value;
     }
-    public static TargetType fromTo(int value){
+
+    public static TargetType fromTo(int value) {
         TargetType[] values = TargetType.values();
-        for(int i = 0;i < values.length; i++){
-            if(values[i].value == value){
+        for (int i = 0; i < values.length; i++) {
+            if (values[i].value == value) {
                 return values[i];
             }
         }

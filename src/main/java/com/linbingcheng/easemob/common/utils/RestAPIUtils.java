@@ -70,7 +70,7 @@ public class RestAPIUtils {
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                if(!initialized){
+                if (!initialized) {
                     connectionManager.setMaxTotal(getMaxTotal());
                     connectionManager.setDefaultMaxPerRoute(getMaxPerRoute());
                     initialized = Boolean.TRUE;
@@ -85,6 +85,7 @@ public class RestAPIUtils {
         // 每5秒检测一次
         conncetionMonitor.schedule(task, 10000, 5000);
     }
+
     /**
      * Obtain a JerseyClient whit SSL
      *
@@ -117,13 +118,14 @@ public class RestAPIUtils {
 
     /**
      * Create a httpClient instance
+     *
      * @param isSSL if the request is protected by ssl
      * @return HttpClient instance
      */
     public static HttpClient getHttpClient(boolean isSSL, String CacertFilePath, String CacertFilePassword) {
         //请求重试处理
         HttpRequestRetryHandler httpRequestRetryHandler = new HttpRequestRetryHandler() {
-            public boolean retryRequest(IOException exception,int executionCount, HttpContext context) {
+            public boolean retryRequest(IOException exception, int executionCount, HttpContext context) {
                 if (executionCount >= 5) {// 如果已经重试了5次，就放弃
                     return false;
                 }
@@ -173,7 +175,7 @@ public class RestAPIUtils {
                 e.printStackTrace();
             }
         } else {
-            client =  HttpClients.custom().setConnectionManager(connectionManager)
+            client = HttpClients.custom().setConnectionManager(connectionManager)
                     .setRetryHandler(httpRequestRetryHandler)
                     .build();
         }

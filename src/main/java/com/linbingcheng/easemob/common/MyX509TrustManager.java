@@ -12,6 +12,7 @@ import java.security.cert.X509Certificate;
 public class MyX509TrustManager implements X509TrustManager {
 
     X509TrustManager myTrustManager;
+
     public MyX509TrustManager(String cacertFile, String password) throws Exception {
         KeyStore keyStore = KeyStore.getInstance("JKS");
         keyStore.load(new FileInputStream(cacertFile), password.toCharArray());
@@ -21,8 +22,8 @@ public class MyX509TrustManager implements X509TrustManager {
 
         TrustManager trustManagers[] = trustManagerFactory.getTrustManagers();
 
-        for(TrustManager trustManager : trustManagers) {
-            if(trustManager instanceof X509TrustManager) {
+        for (TrustManager trustManager : trustManagers) {
+            if (trustManager instanceof X509TrustManager) {
                 myTrustManager = (X509TrustManager) trustManager;
                 return;
             }

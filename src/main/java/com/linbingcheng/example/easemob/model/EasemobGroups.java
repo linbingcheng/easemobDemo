@@ -109,6 +109,7 @@ public class EasemobGroups {
     public List<EasemobUser> getAffiliations() {
         return affiliations;
     }
+
     public void setAffiliations(List<EasemobUser> affiliations) {
         this.affiliations = affiliations;
     }

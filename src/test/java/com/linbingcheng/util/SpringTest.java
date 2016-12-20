@@ -112,7 +112,7 @@ public class SpringTest {
         EasemobGroups groups = new EasemobGroups();
         String id = UUID.randomUUID().toString();
         groups.setId(id);
-        groups.setName("测试聊天室1");
+        groups.setName("测试群组1");
         groups.setAffiliationsCount(1);
         groups.setCreateTime(new Date());
         groups.setOwner("942126c1-85de-45f5-8dc3-ee7bd4420b72");
@@ -139,6 +139,20 @@ public class SpringTest {
         for (EasemobUser user : users){
             System.out.println(user.getId());
             System.out.println(user.getNickName());
+        }
+    }
+
+    @Test
+    public void testGetUser(){
+        EasemobUser user = mapper.selectByPrimaryKey("942126c1-85de-45f5-8dc3-ee7bd4420b72");
+        List<EasemobGroups> groupses = user.getGroupses();
+        List<EasemobChatRoom> chatRooms = user.getChatRooms();
+        for (EasemobGroups g :groupses){
+            System.out.println(g.getName());
+        }
+        System.out.println("++++++++++++++++++");
+        for (EasemobChatRoom r : chatRooms){
+            System.out.println(r.getName());
         }
     }
 

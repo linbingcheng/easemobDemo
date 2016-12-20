@@ -14,7 +14,7 @@
         <result column="owner" jdbcType="VARCHAR" property="owner"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <collection property="affiliations" column="id" ofType="arraylist"
-                    select="com.linbingcheng.example.easemob.dao.EasemobGroupsMapper.selectAffiliationsByPrimaryKey">
+                    select="selectAffiliationsByPrimaryKey">
         </collection>
     </resultMap>
     <sql id="Base_Column_List">

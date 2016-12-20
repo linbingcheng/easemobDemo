@@ -8,22 +8,22 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.Map;
 
 public class TextMessageBody extends MessageBody {
-	private String msg;
+    private String msg;
 
-	public TextMessageBody(String targetType, String[] targets, String from, Map<String, String> ext, String msg) {
-		super(targetType, targets, from, ext);
-		this.msg = msg;
-	}
+    public TextMessageBody(String targetType, String[] targets, String from, Map<String, String> ext, String msg) {
+        super(targetType, targets, from, ext);
+        this.msg = msg;
+    }
 
-	public String getMsg() {
-		return msg;
-	}
+    public String getMsg() {
+        return msg;
+    }
 
     public ContainerNode<?> getBody() {
-        if(!isInit()){
-			ObjectNode msg = this.getMsgBody().putObject("msg");
-			msg.put("type", MsgType.TEXT);
-			msg.put("msg", this.msg);
+        if (!isInit()) {
+            ObjectNode msg = this.getMsgBody().putObject("msg");
+            msg.put("type", MsgType.TEXT);
+            msg.put("msg", this.msg);
             this.setInit(true);
         }
 
@@ -31,6 +31,6 @@ public class TextMessageBody extends MessageBody {
     }
 
     public Boolean validate() {
-		return super.validate() && StringUtils.isNotBlank(msg);
-	}
+        return super.validate() && StringUtils.isNotBlank(msg);
+    }
 }

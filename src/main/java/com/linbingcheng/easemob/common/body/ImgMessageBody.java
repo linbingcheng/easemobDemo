@@ -44,7 +44,7 @@ public class ImgMessageBody extends MessageBody {
     }
 
     public ContainerNode<?> getBody() {
-        if(!this.isInit()) {
+        if (!this.isInit()) {
             ObjectNode msg = this.getMsgBody().putObject("msg");
             msg.put("type", MsgType.IMG);
             msg.put("url", url);

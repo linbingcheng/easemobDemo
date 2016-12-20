@@ -28,7 +28,7 @@ public class EasemobContext {
 
 
     /*
-	 * Implementation List
+     * Implementation List
 	 */
     public static final String JERSEY_API = "jersey";
 
@@ -206,13 +206,13 @@ public class EasemobContext {
         context.cacertFilePath = cacertFilePath;
         context.cacertFilePassword = cacertFilePassword;
 
-        context.httpChatset = StringUtils.isBlank(httpChatset)? context.httpChatset:httpChatset;
-        context.connectionIdleTimeout= StringUtils.isBlank(connectionIdleTimeout)? context.connectionIdleTimeout:Integer.valueOf(connectionIdleTimeout);
-        context.connectionTimeout=  StringUtils.isBlank(connectionTimeout)?context.connectionIdleTimeout:Integer.valueOf(connectionTimeout);
-        context.socketTimeout=  StringUtils.isBlank(socketTimeout)?context.socketTimeout:Integer.valueOf(socketTimeout);
-        context.connectionRequestTime=  StringUtils.isBlank(connectionRequestTime)?context.connectionRequestTime:Integer.valueOf(connectionRequestTime);
-        context.maxPerRouteConnetion=  StringUtils.isBlank(maxPerRouteConnetion)?context.maxPerRouteConnetion:Integer.valueOf(maxPerRouteConnetion);
-        context.maxTotalConnection=  StringUtils.isBlank(maxTotalConnection)?context.maxTotalConnection:Integer.valueOf(maxTotalConnection);
+        context.httpChatset = StringUtils.isBlank(httpChatset) ? context.httpChatset : httpChatset;
+        context.connectionIdleTimeout = StringUtils.isBlank(connectionIdleTimeout) ? context.connectionIdleTimeout : Integer.valueOf(connectionIdleTimeout);
+        context.connectionTimeout = StringUtils.isBlank(connectionTimeout) ? context.connectionIdleTimeout : Integer.valueOf(connectionTimeout);
+        context.socketTimeout = StringUtils.isBlank(socketTimeout) ? context.socketTimeout : Integer.valueOf(socketTimeout);
+        context.connectionRequestTime = StringUtils.isBlank(connectionRequestTime) ? context.connectionRequestTime : Integer.valueOf(connectionRequestTime);
+        context.maxPerRouteConnetion = StringUtils.isBlank(maxPerRouteConnetion) ? context.maxPerRouteConnetion : Integer.valueOf(maxPerRouteConnetion);
+        context.maxTotalConnection = StringUtils.isBlank(maxTotalConnection) ? context.maxTotalConnection : Integer.valueOf(maxTotalConnection);
         RestAPIUtils.setIdleTimeOut(context.connectionIdleTimeout);
         RestAPIUtils.setMaxPerRoute(context.maxPerRouteConnetion);
         RestAPIUtils.setMaxTotal(context.maxTotalConnection);

@@ -10,6 +10,12 @@
         <result column="password" jdbcType="VARCHAR" property="password"/>
         <result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <collection property="groupses" column="id" ofType="arraylist"
+                    select="selectGroupsesByPrimaryKey">
+        </collection>
+        <collection property="chatRooms" column="id" ofType="arraylist"
+                    select="selectChatRoomsByPrimaryKey">
+        </collection>
     </resultMap>
     <sql id="Base_Column_List">
     id, user_id, username, password, nick_name, create_time
@@ -19,6 +25,22 @@
         <include refid="Base_Column_List"/>
         from easemob_users
         where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectGroupsesByPrimaryKey" parameterType="java.lang.String" resultMap="com.linbingcheng.example.easemob.dao.EasemobGroupsMapper.BaseResultMap">
+        SELECT
+        eg.id, eg.name, eg.description, eg.is_public, eg.membersonly, eg.allowinvites, eg.maxusers, eg.affiliations_count,
+    eg.owner, eg.create_time
+        FROM easemob_groups_affiliation ega LEFT JOIN easemob_groups eg
+        ON ega.groups_id = eg.id
+        WHERE ega.user_id = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectChatRoomsByPrimaryKey" parameterType="java.lang.String" resultMap="com.linbingcheng.example.easemob.dao.EasemobChatRoomMapper.BaseResultMap">
+        SELECT
+        cr.id, cr.name, cr.description, cr.maxusers, cr.affiliations_count, cr.owner, cr.create_time
+        From easemob_chatroom_affiliation eca LEFT JOIN easemob_chatroom cr
+        ON eca.chat_room_id = cr.id
+        WHERE eca.user_id = #{id,jdbcType=VARCHAR}
+
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from easemob_users
