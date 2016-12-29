@@ -2,13 +2,22 @@
 <ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd"
          updateCheck="false">
-
+    <diskStore path="java.io.tmpdir"/>
+    <defaultCache
+            maxElementsInMemory="10000"
+            eternal="false"
+            timeToIdleSeconds="120"
+            timeToLiveSeconds="120"
+            maxElementsOnDisk="10000000"
+            diskExpiryThreadIntervalSeconds="120"
+            memoryStoreEvictionPolicy="LRU">
+        <persistence strategy="localTempSwap"/>
+    </defaultCache>
     <!-- service 缓存配置 -->
     <cache name="serviceCache" eternal="false" maxElementsInMemory="100"
            overflowToDisk="false" diskPersistent="false" timeToIdleSeconds="0"
            timeToLiveSeconds="300" memoryStoreEvictionPolicy="LRU" />
-
     <!--用户Cache -->
     <cache name="userCache" maxElementsInMemory="100"
            timeToLiveSeconds="300" eternal="false" overflowToDisk="false" />
-</ehcache> 
+</ehcache>

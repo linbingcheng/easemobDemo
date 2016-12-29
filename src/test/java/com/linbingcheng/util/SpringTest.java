@@ -1,5 +1,7 @@
 package com.linbingcheng.util;
 
+import com.linbingcheng.example.activemq.common.Receiver;
+import com.linbingcheng.example.activemq.dao.ActiveMQMappingMapper;
 import com.linbingcheng.example.easemob.common.enumtype.TargetType;
 import com.linbingcheng.example.easemob.dao.*;
 import com.linbingcheng.example.easemob.model.*;
@@ -8,9 +10,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created by bingchenglin on 2016/12/12.
@@ -24,6 +24,7 @@ public class SpringTest {
     private ChatRoomMapperUserMapper chatRoomMapperUserMapper;
     private EasemobGroupsMapper groupsMapper;
     private GroupsMapperUserMapper groupsMapperUserMapper;
+    private ActiveMQMappingMapper activeMQMappingMapper;
 
     /**
      * 这个before方法在所有的测试方法之前执行，并且只执行一次
@@ -32,13 +33,14 @@ public class SpringTest {
      */
     @Before
     public void before(){
-        ApplicationContext ac = new ClassPathXmlApplicationContext(new String[]{"system/applicationContext-main.xml","system/applicationContext-mybatis.xml"});
+        ApplicationContext ac = new ClassPathXmlApplicationContext(new String[]{"system/applicationContext-main.xml","system/applicationContext-mybatis.xml","system/applicationContext-activemq.xml"});
         mapper = ac.getBean(EasemobUserMapper.class);
         msgMapper = ac.getBean(EasemobMessageMapper.class);
         chatRoomMapper = ac.getBean(EasemobChatRoomMapper.class);
         chatRoomMapperUserMapper = ac.getBean(ChatRoomMapperUserMapper.class);
         groupsMapper = ac.getBean(EasemobGroupsMapper.class);
         groupsMapperUserMapper = ac.getBean(GroupsMapperUserMapper.class);
+        activeMQMappingMapper = ac.getBean(ActiveMQMappingMapper.class);
     }
 
 
@@ -46,10 +48,10 @@ public class SpringTest {
     public void testAddUser(){
         EasemobUser user = new EasemobUser();
         user.setId(UUID.randomUUID().toString());
-        user.setPassword("密码1");
-        user.setUsername("用户名1");
-        user.setNickName("昵称1");
-        user.setUserId("用户编码1");
+        user.setPassword("111111");
+        user.setUsername("￥￥￥￥￥1");
+        user.setNickName("TTT");
+        user.setUserId("YYYYYYY1");
         mapper.insert(user);
     }
 
@@ -154,6 +156,43 @@ public class SpringTest {
         for (EasemobChatRoom r : chatRooms){
             System.out.println(r.getName());
         }
+    }
+
+    @Test
+    public void testFindActice(){
+        String[] sss = activeMQMappingMapper.getAllQueueName();
+        for (String s:sss){
+            System.out.println(s);
+        }
+    }
+
+    @Test
+    public void testMap(){
+        List<Map<String, Object>> regionMap = activeMQMappingMapper.getConfigMap("test");
+        Map<String, String> resultMap = new HashMap<String, String>();
+        for (Map<String, Object> map : regionMap) {
+            String region = null;
+            String id = null;
+            for (Map.Entry<String, Object> entry : map.entrySet()) {
+                if ("mapping_name".equals(entry.getKey())) {
+                    region = (String) entry.getValue();
+                } else if ("mapping_value".equals(entry.getKey())) {
+                    id =  (String) entry.getValue();
+                }
+            }
+            resultMap.put(region, id);
+        }
+        for (String key : resultMap.keySet()){
+            System.out.println(key+":"+resultMap.get(key));
+        }
+    }
+
+
+
+    @Test
+    public void testActiveMQReseiver(){
+        Receiver receiver = new Receiver("test");
+        receiver.run();
     }
 
 }

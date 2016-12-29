@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linbingcheng.example.activemq.dao.ActiveMQMappingMapper">
+    <resultMap id="BaseResultMap" type="com.linbingcheng.example.activemq.model.ActiveMQMapping">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="queue_name" jdbcType="VARCHAR" property="queueName"/>
+        <result column="mapping_name" jdbcType="VARCHAR" property="mappingName"/>
+        <result column="mapping_value" jdbcType="VARCHAR" property="mappingValue"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, queue_name, mapping_name, mapping_value, remark
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from activemq_mapping
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="getConfigMap" parameterType="java.lang.String" resultType="java.util.HashMap">
+        select
+          mapping_name,mapping_value
+        from activemq_mapping
+        where queue_name = #{queueName,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getAllQueueName" resultType="java.lang.String">
+        select queue_name from activemq_mapping group by queue_name
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from activemq_mapping
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.linbingcheng.example.activemq.model.ActiveMQMapping">
+    insert into activemq_mapping (id, queue_name, mapping_name, 
+      mapping_value, remark)
+    values (#{id,jdbcType=INTEGER}, #{queueName,jdbcType=VARCHAR}, #{mappingName,jdbcType=VARCHAR}, 
+      #{mappingValue,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.linbingcheng.example.activemq.model.ActiveMQMapping">
+        insert into activemq_mapping
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="queueName != null">
+                queue_name,
+            </if>
+            <if test="mappingName != null">
+                mapping_name,
+            </if>
+            <if test="mappingValue != null">
+                mapping_value,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="queueName != null">
+                #{queueName,jdbcType=VARCHAR},
+            </if>
+            <if test="mappingName != null">
+                #{mappingName,jdbcType=VARCHAR},
+            </if>
+            <if test="mappingValue != null">
+                #{mappingValue,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective"
+            parameterType="com.linbingcheng.example.activemq.model.ActiveMQMapping">
+        update activemq_mapping
+        <set>
+            <if test="queueName != null">
+                queue_name = #{queueName,jdbcType=VARCHAR},
+            </if>
+            <if test="mappingName != null">
+                mapping_name = #{mappingName,jdbcType=VARCHAR},
+            </if>
+            <if test="mappingValue != null">
+                mapping_value = #{mappingValue,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey"
+            parameterType="com.linbingcheng.example.activemq.model.ActiveMQMapping">
+    update activemq_mapping
+    set queue_name = #{queueName,jdbcType=VARCHAR},
+      mapping_name = #{mappingName,jdbcType=VARCHAR},
+      mapping_value = #{mappingValue,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
