@@ -1,5 +1,6 @@
 package com.linbingcheng.example.activemq.common;
 
+import com.linbingcheng.example.activemq.service.interfaces.IActiveMQMappingSV;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.command.ActiveMQQueue;
 import org.slf4j.Logger;
@@ -18,6 +19,8 @@ public class Sender {
 
     @Resource
     private ActiveMQConnectionFactory connectionFactory;
+    @Resource
+    private IActiveMQMappingSV service;
     private Connection connection;
     private Destination senderDest;
     private Session session;
@@ -33,7 +36,7 @@ public class Sender {
 
     private void init(){
         try {
-            config = ActiveMQContext.MAPPINGS.get(queueName);
+            config = service.getQueueConfig(queueName);
             isTransaction = Boolean.valueOf((String) config.get(ActiveMQContext.SESSION_TRANSACTION_SWITCH));
             connection = connectionFactory.createConnection();
             connection.start();

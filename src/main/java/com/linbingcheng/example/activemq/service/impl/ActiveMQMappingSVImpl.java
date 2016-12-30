@@ -2,8 +2,9 @@ package com.linbingcheng.example.activemq.service.impl;
 
 import com.linbingcheng.example.activemq.dao.ActiveMQMappingMapper;
 import com.linbingcheng.example.activemq.service.interfaces.IActiveMQMappingSV;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,24 +12,23 @@ import java.util.Map;
 /**
  * Created by bingchenglin on 2016/12/28.
  */
+@Service
 public class ActiveMQMappingSVImpl implements IActiveMQMappingSV {
 
-    @Resource
-    private ActiveMQMappingMapper mapper;
+    @Autowired
+    private ActiveMQMappingMapper activeMQMappingMapper;
 
-
-    @Override
     public Map<String, Map<String, Object>> getAllConfig() {
         Map<String, Map<String, Object>> resultMap = new HashMap<String,  Map<String, Object>>();
-        String[] allQueueName = mapper.getAllQueueName();
+        String[] allQueueName = activeMQMappingMapper.getAllQueueName();
         for (int i =0;i<allQueueName.length;i++){
             resultMap.put(allQueueName[i],getQueueConfig(allQueueName[i]));
         }
         return resultMap;
     }
 
-    private Map<String,Object> getQueueConfig(String queueName){
-        List<Map<String, Object>> regionMap = mapper.getConfigMap("queueName");
+    public Map<String,Object> getQueueConfig(String queueName){
+        List<Map<String, Object>> regionMap = activeMQMappingMapper.getConfigMap("queueName");
         Map<String, Object> resultMap = new HashMap<String, Object>();
         for (Map<String, Object> map : regionMap) {
             String mapping_name = null;

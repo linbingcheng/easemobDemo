@@ -5,16 +5,19 @@ import com.linbingcheng.example.activemq.dao.ActiveMQMappingMapper;
 import com.linbingcheng.example.easemob.common.enumtype.TargetType;
 import com.linbingcheng.example.easemob.dao.*;
 import com.linbingcheng.example.easemob.model.*;
-import org.junit.Before;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.*;
 
 /**
  * Created by bingchenglin on 2016/12/12.
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration({"/system/applicationContext-*.xml"})
 public class SpringTest {
 
 
@@ -25,24 +28,14 @@ public class SpringTest {
     private EasemobGroupsMapper groupsMapper;
     private GroupsMapperUserMapper groupsMapperUserMapper;
     private ActiveMQMappingMapper activeMQMappingMapper;
+    @Autowired
+    private Receiver receiver;
 
     /**
      * 这个before方法在所有的测试方法之前执行，并且只执行一次
      * 所有做Junit单元测试时一些初始化工作可以在这个方法里面进行
      * 比如在before方法里面初始化ApplicationContext和mapper
      */
-    @Before
-    public void before(){
-        ApplicationContext ac = new ClassPathXmlApplicationContext(new String[]{"system/applicationContext-main.xml","system/applicationContext-mybatis.xml","system/applicationContext-activemq.xml"});
-        mapper = ac.getBean(EasemobUserMapper.class);
-        msgMapper = ac.getBean(EasemobMessageMapper.class);
-        chatRoomMapper = ac.getBean(EasemobChatRoomMapper.class);
-        chatRoomMapperUserMapper = ac.getBean(ChatRoomMapperUserMapper.class);
-        groupsMapper = ac.getBean(EasemobGroupsMapper.class);
-        groupsMapperUserMapper = ac.getBean(GroupsMapperUserMapper.class);
-        activeMQMappingMapper = ac.getBean(ActiveMQMappingMapper.class);
-    }
-
 
     @Test
     public void testAddUser(){
@@ -191,7 +184,6 @@ public class SpringTest {
 
     @Test
     public void testActiveMQReseiver(){
-        Receiver receiver = new Receiver("test");
         receiver.run();
     }
 

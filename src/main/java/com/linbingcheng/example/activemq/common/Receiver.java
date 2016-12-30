@@ -1,11 +1,12 @@
 package com.linbingcheng.example.activemq.common;
 
+import com.linbingcheng.example.activemq.service.interfaces.IActiveMQMappingSV;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.command.ActiveMQQueue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.annotation.Resource;
 import javax.jms.*;
 import java.util.Map;
 
@@ -16,8 +17,10 @@ public class Receiver implements Runnable,MessageListener {
 
     private static final Logger logger = LoggerFactory.getLogger(Receiver.class);
 
-    @Resource
+    @Autowired
     private ActiveMQConnectionFactory connectionFactory;
+    @Autowired
+    private IActiveMQMappingSV service;
     private Connection connection;
     private Destination receiverDest;
     private Session session;
@@ -28,6 +31,9 @@ public class Receiver implements Runnable,MessageListener {
     private Boolean isTransaction = true;
     private String queueName;
 
+    public void setQueueName(String queueName) {
+        this.queueName = queueName;
+    }
 
     public Receiver(String queueName) {
         this.queueName = queueName;
@@ -35,7 +41,7 @@ public class Receiver implements Runnable,MessageListener {
 
     private void receive(){
         try{
-            config = ActiveMQContext.MAPPINGS.get(queueName);
+            config = service.getQueueConfig(queueName);
             isTransaction = Boolean.valueOf((String) config.get(ActiveMQContext.SESSION_TRANSACTION_SWITCH));
             connection = connectionFactory.createConnection();
             connection.start();
