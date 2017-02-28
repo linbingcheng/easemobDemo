@@ -8,21 +8,5 @@
 > 由于第三方平台接口有对请求数据进行限流，所以为了保证数据能够及时有效精准的推送的app端
 在高并发有多条数据请求进入服务器端，先将请求数据存进消息队列中，添加定时任务消费数据；消费的同时进行持久化处理
 
-## 消息队列的选用（以及基本部署）
-> 考虑到应用的用户规模应该不会特别大，选用比较轻量级别的ActiveMQ
-部署时解压bin包下apache-activemq-5.14.2-bin.zip，进入C:\developer\apache-activemq-5.14.2\bin
-在命令行下运行即可启动
-```
-activemq.bat start
-```
-linux系统请下载安装部署linux版本，将其运行为后台程序(自己进行集群优化)
-```
-sh activemq.sh start &
-```
-启动ActiveMQ以后，登陆：http://localhost:8161/admin/
-账号密码为admin/admin
-即为成功
-
-##activemq按照数据封装录入对应的数据即可
-
+## 消息队列的选用
 
