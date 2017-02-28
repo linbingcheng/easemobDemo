@@ -6,18 +6,17 @@ import com.linbingcheng.example.easemob.common.enumtype.TargetType;
 import com.linbingcheng.example.easemob.dao.*;
 import com.linbingcheng.example.easemob.model.*;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
 
 import java.util.*;
 
 /**
  * Created by bingchenglin on 2016/12/12.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"/system/applicationContext-*.xml"})
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration({"/system/applicationContext-*.xml"})
 public class SpringTest {
 
 
@@ -28,8 +27,7 @@ public class SpringTest {
     private EasemobGroupsMapper groupsMapper;
     private GroupsMapperUserMapper groupsMapperUserMapper;
     private ActiveMQMappingMapper activeMQMappingMapper;
-    @Autowired
-    private Receiver receiver;
+
 
     /**
      * 这个before方法在所有的测试方法之前执行，并且只执行一次
@@ -182,9 +180,5 @@ public class SpringTest {
 
 
 
-    @Test
-    public void testActiveMQReseiver(){
-        receiver.run();
-    }
 
 }
