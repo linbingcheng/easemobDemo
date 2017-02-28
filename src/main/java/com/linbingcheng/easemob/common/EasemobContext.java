@@ -167,10 +167,10 @@ public class EasemobContext {
         Properties p = new Properties();
 
         try {
-            InputStream inputStream = EasemobContext.class.getClassLoader().getResourceAsStream("easemob/easemob_appinfo.properties");
+            InputStream inputStream = EasemobContext.class.getClassLoader().getResourceAsStream(configProperties);
             p.load(inputStream);
         } catch (IOException e) {
-            log.error(MessageTemplate.print(MessageTemplate.FILE_ACCESS_MSG, new String[]{"easemob/easemob_appinfo.properties"}));
+            log.error(MessageTemplate.print(MessageTemplate.FILE_ACCESS_MSG, new String[]{configProperties}));
             return; // Context not initialized
         }
 
