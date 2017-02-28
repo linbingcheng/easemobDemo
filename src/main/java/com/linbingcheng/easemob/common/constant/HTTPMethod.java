@@ -1,10 +1,6 @@
 package com.linbingcheng.easemob.common.constant;
 
-/**
- * HTTP Methods
- *
- * @author Lynch 2014-09-15
- */
+
 public interface HTTPMethod {
 
     /**

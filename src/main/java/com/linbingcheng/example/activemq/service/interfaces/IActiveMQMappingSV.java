@@ -7,7 +7,6 @@ import java.util.Map;
  */
 public interface IActiveMQMappingSV {
 
-
     Map<String,Map<String,Object>> getAllConfig();
 
     Map<String,Object> getQueueConfig(String queueName);

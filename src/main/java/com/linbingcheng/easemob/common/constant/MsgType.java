@@ -1,10 +1,6 @@
 package com.linbingcheng.easemob.common.constant;
 
-/**
- * Message Type
- *
- * @author Eric23 2016-01-06
- */
+
 public interface MsgType {
     public static final String TEXT = "txt";
     public static final String IMG = "img";
