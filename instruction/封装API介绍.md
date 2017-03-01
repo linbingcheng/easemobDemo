@@ -7,11 +7,11 @@
 
 ####注册IM用户[单个]
 调用方式参考 ：com.linbingcheng.easemob.IMUserTest.addIMUser()
-####注册IM用户[批量] (接口建议在20-60之间。）
+####注册IM用户[批量] (接口建议在20-60之间 ）
 调用方式参考 ：com.linbingcheng.easemob.IMUserTest.addIMUsersBatch()
 ####获取IM用户[单个]
 调用方式参考 ：com.linbingcheng.easemob.IMUserTest.getIMUserByUserName()
-####获取IM用户[批量]，参数为空时默认返回最早创建的10个用户 <br>
+####获取IM用户[批量]，参数为空时默认返回最早创建的10个用户  
 调用方式参考 ：com.linbingcheng.easemob.IMUserTest.getIMUsersBatch()
 ####删除IM用户[单个]
 调用方式参考 ：com.linbingcheng.easemob.IMUserTest.deleteIMUserByUserName()
@@ -47,6 +47,40 @@
 调用方式参考 ：com.linbingcheng.easemob.IMUserTest.getIMUserAllChatGroups()
 ####获取用户所有参与的聊天室
 调用方式参考 ：com.linbingcheng.easemob.IMUserTest.getIMUserAllChatRooms()
+
+###群组管理
+####获取群组，参数为空时获取所有群组  
+调用方式参考 ：com.linbingcheng.easemob.ChatRoomTest.getChatGroups()
+####获取一个或者多个群组的详情  
+调用方式参考 ：com.linbingcheng.easemob.ChatRoomTest.getChatGroupDetails()
+####创建一个群组  
+调用方式参考 ：com.linbingcheng.easemob.ChatRoomTest.createChatGroup()
+####修改群组信息  
+调用方式参考 ：com.linbingcheng.easemob.ChatRoomTest.modifyChatGroup()
+####删除群组  
+调用方式参考 ：com.linbingcheng.easemob.ChatRoomTest.deleteChatGroup()
+####获取群组所有用户  
+调用方式参考 ：com.linbingcheng.easemob.ChatRoomTest.getChatGroupUsers()
+####群组加人[单个]  
+调用方式参考 ：com.linbingcheng.easemob.ChatRoomTest.addSingleUserToChatGroup()
+####群组加人[批量]  
+调用方式参考 ：com.linbingcheng.easemob.ChatRoomTest.addBatchUsersToChatGroup()
+####群组减人[单个]  
+调用方式参考 ：com.linbingcheng.easemob.ChatRoomTest.removeSingleUserFromChatGroup()
+####群组减人[批量]  
+调用方式参考 ：com.linbingcheng.easemob.ChatRoomTest.removeBatchUsersFromChatGroup()
+####群组转让  
+调用方式参考 ：com.linbingcheng.easemob.ChatRoomTest.transferChatGroupOwner()
+####查询群组黑名单  
+调用方式参考 ：com.linbingcheng.easemob.ChatRoomTest.getChatGroupBlockUsers()
+####群组黑名单个添加  
+调用方式参考 ：com.linbingcheng.easemob.ChatRoomTest.addSingleBlockUserToChatGroup()
+####群组黑名单批量添加  
+调用方式参考 ：com.linbingcheng.easemob.ChatRoomTest.addBatchBlockUsersToChatGroup()
+####群组黑名单单个删除  
+调用方式参考 ：com.linbingcheng.easemob.ChatRoomTest.removeSingleBlockUserFromChatGroup()
+####群组黑名单批量删除
+调用方式参考 ：com.linbingcheng.easemob.ChatRoomTest.removeBatchBlockUsersFromChatGroup()
 
 ###聊天室管理
 
