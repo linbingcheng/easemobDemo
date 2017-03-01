@@ -4,6 +4,7 @@ import com.linbingcheng.easemob.api.ChatGroupAPI;
 import com.linbingcheng.easemob.common.EasemobContext;
 import com.linbingcheng.easemob.common.EasemobRestAPIFactory;
 import com.linbingcheng.easemob.common.body.ChatGroupBody;
+import com.linbingcheng.easemob.common.body.GroupOwnerTransferBody;
 import com.linbingcheng.easemob.common.body.ModifyChatGroupBody;
 import com.linbingcheng.easemob.common.body.UserNamesBody;
 import com.linbingcheng.easemob.common.wrapper.ResponseWrapper;
@@ -176,30 +177,88 @@ public class ChatGroupTest {
     /**
      * 群组转让接口测试
      */
-    public void  transferChatGroupOwner(String groupId, Object payload){}
+    @Test
+    public void  transferChatGroupOwner(){
+        ChatGroupAPI chatGroupAPI = (ChatGroupAPI) EasemobContext.getAPIFactory().newInstance(EasemobRestAPIFactory.CHATGROUP_CLASS);
+        GroupOwnerTransferBody groupOwnerTransferBody = new GroupOwnerTransferBody("yonghuming12");
+        ResponseWrapper wrapper = (ResponseWrapper) chatGroupAPI.transferChatGroupOwner("9398104686593", groupOwnerTransferBody);
+        System.out.println("+++++++++");
+        Assert.assertNotNull(wrapper);
+        System.out.println(wrapper.getResponseBody());
+        System.out.println(wrapper.toString());
+        System.out.println("+++++++++");
+    }
 
     /**
      * 查询群组黑名单接口测试
      */
-    public void  getChatGroupBlockUsers(String groupId){}
+    @Test
+    public void  getChatGroupBlockUsers(){
+        ChatGroupAPI chatGroupAPI = (ChatGroupAPI) EasemobContext.getAPIFactory().newInstance(EasemobRestAPIFactory.CHATGROUP_CLASS);
+        ResponseWrapper wrapper = (ResponseWrapper) chatGroupAPI.getChatGroupBlockUsers("9398104686593");
+        System.out.println("+++++++++");
+        Assert.assertNotNull(wrapper);
+        System.out.println(wrapper.getResponseBody());
+        System.out.println(wrapper.toString());
+        System.out.println("+++++++++");
+    }
 
     /**
      * 群组黑名单个添加接口测试
      */
-    public void  addSingleBlockUserToChatGroup(String groupId, String userId){}
+    @Test
+    public void  addSingleBlockUserToChatGroup(){
+        ChatGroupAPI chatGroupAPI = (ChatGroupAPI) EasemobContext.getAPIFactory().newInstance(EasemobRestAPIFactory.CHATGROUP_CLASS);
+        ResponseWrapper wrapper = (ResponseWrapper) chatGroupAPI.addSingleBlockUserToChatGroup("9398104686593", "yonghuming11");
+        System.out.println("+++++++++");
+        Assert.assertNotNull(wrapper);
+        System.out.println(wrapper.getResponseBody());
+        System.out.println(wrapper.toString());
+        System.out.println("+++++++++");
+    }
 
     /**
      * 群组黑名单批量添加接口测试
      */
-    public void  addBatchBlockUsersToChatGroup(String groupId, Object payload){}
+    @Test
+    public void  addBatchBlockUsersToChatGroup(){
+        ChatGroupAPI chatGroupAPI = (ChatGroupAPI) EasemobContext.getAPIFactory().newInstance(EasemobRestAPIFactory.CHATGROUP_CLASS);
+        String[] userNames = new String[]{"yonghuming8"};
+        UserNamesBody userNamesBody = new UserNamesBody(userNames);
+        ResponseWrapper wrapper = (ResponseWrapper) chatGroupAPI.addBatchBlockUsersToChatGroup("9398104686593", userNamesBody);
+        System.out.println("+++++++++");
+        Assert.assertNotNull(wrapper);
+        System.out.println(wrapper.getResponseBody());
+        System.out.println(wrapper.toString());
+        System.out.println("+++++++++");
+    }
 
     /**
      * 群组黑名单单个删除接口测试
      */
-    public void  removeSingleBlockUserFromChatGroup(String groupId, String userId){}
+    @Test
+    public void  removeSingleBlockUserFromChatGroup(){
+        ChatGroupAPI chatGroupAPI = (ChatGroupAPI) EasemobContext.getAPIFactory().newInstance(EasemobRestAPIFactory.CHATGROUP_CLASS);
+        ResponseWrapper wrapper = (ResponseWrapper) chatGroupAPI.removeSingleBlockUserFromChatGroup("9398104686593", "yonghuming11");
+        System.out.println("+++++++++");
+        Assert.assertNotNull(wrapper);
+        System.out.println(wrapper.getResponseBody());
+        System.out.println(wrapper.toString());
+        System.out.println("+++++++++");
+    }
 
     /**
      * 群组黑名单批量删除接口测试
      */
-    public void  removeBatchBlockUsersFromChatGroup(String groupId, String[] userIds){}
+    @Test
+    public void  removeBatchBlockUsersFromChatGroup(){
+        ChatGroupAPI chatGroupAPI = (ChatGroupAPI) EasemobContext.getAPIFactory().newInstance(EasemobRestAPIFactory.CHATGROUP_CLASS);
+        String[] userNames = new String[]{"yonghuming8"};
+        ResponseWrapper wrapper = (ResponseWrapper) chatGroupAPI.removeBatchBlockUsersFromChatGroup("9398104686593", userNames);
+        System.out.println("+++++++++");
+        Assert.assertNotNull(wrapper);
+        System.out.println(wrapper.getResponseBody());
+        System.out.println(wrapper.toString());
+        System.out.println("+++++++++");
+    }
 }
