@@ -55,8 +55,8 @@ public class SendMessageTest {
         //发送信息到群组
         String[] targets = new String[]{"9398104686593"};
         Map<String, String> ext = new HashMap<String, String>();
-        String url = "C:\\Users\\linbingchneg\\Desktop";
-        String filename = "QQ截图20170301231358.png";
+        String url = "https://a1.easemob.com/1105161117178528/linbingchengtest1/chatfiles/55f12940-64af-11e4-8a5b-ff2336f03252";
+        String filename = "20170301231358.png";
         String secret = "VfEpSmSvEeS7yU8dwa9rAQc-DIL2HhmpujTNfSTsrDt6eNb_";
         long w = 480;
         long h = 720;
@@ -78,7 +78,7 @@ public class SendMessageTest {
         //发送信息到聊天室
         String[] targets = new String[]{"9390557036549"};
         Map<String, String> ext = new HashMap<String, String>();
-        String url = "F:\\music";
+        String url = "https://a1.easemob.com/1105161117178528/linbingchengtest1/chatfiles/55f12940-64af-11e4-8a5b-ff2336f03252";
         String filename = "Samantha Jade - Boyfriend.mp3";
         String secret = "Hfx_WlXGEeSdDW-SuX2EaZcXDC7ZEig3OgKZye9IzKOwoCjM";
         long l = 10;
@@ -100,8 +100,8 @@ public class SendMessageTest {
         //发送信息到用户
         String[] targets = new String[]{"yonghuming6"};
         Map<String, String> ext = new HashMap<String, String>();
-        String thumb = "C:\\Users\\linbingchneg\\Desktop\\QQ截图20170301231358.png";//缩略图
-        String url = "H:\\BaiduYunDownload";
+        String thumb = "https://a1.easemob.com/1105161117178528/linbingchengtest1/chatfiles/55f12940-64af-11e4-8a5b-ff2336f03252";//缩略图
+        String url = "https://a1.easemob.com/1105161117178528/linbingchengtest1/chatfiles/55f12940-64af-11e4-8a5b-ff2336f03252";
         String filename = "墨泥学车软件使用视频介绍.mp4";
         String secret = "VfEpSmSvEeS7yU8dwa9rAQc-DIL2HhmpujTNfSTsrDt6eNb_";
         String thumb_secret = "ZyebKn9pEeSSfY03ROk7ND24zUf74s7HpPN1oMV-1JxN2O2I";
