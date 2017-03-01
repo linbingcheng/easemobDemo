@@ -48,7 +48,20 @@
 ####获取用户所有参与的聊天室
 调用方式参考 ：com.linbingcheng.easemob.IMUserTest.getIMUserAllChatRooms()
 
+###发送消息
+
+####发送文本信息
+调用方式参考 ：com.linbingcheng.easemob.SendMessageTest.SendTextMessageMessage();
+####发送图片信息
+调用方式参考 ：com.linbingcheng.easemob.SendMessageTest.SendImgMessageMessage();
+####发送音频信息
+调用方式参考 ：com.linbingcheng.easemob.SendMessageTest.SendAudioMessageMessage();
+####发送视频信息
+调用方式参考 ：com.linbingcheng.easemob.SendMessageTest.SendVideoMessageMessage();
+
+
 ###群组管理
+
 ####获取群组，参数为空时获取所有群组  
 调用方式参考 ：com.linbingcheng.easemob.ChatRoomTest.getChatGroups()
 ####获取一个或者多个群组的详情  
