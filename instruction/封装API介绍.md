@@ -59,6 +59,12 @@
 ####发送视频信息
 调用方式参考 ：com.linbingcheng.easemob.SendMessageTest.SendVideoMessageMessage();
 
+###聊天记录
+
+####导出聊天记录
+调用方式参考 ：com.linbingcheng.easemob.ChatMessageTest.exportChatMessages();
+
+
 ###文件上传下载
 ####上传文件
 调用方式参考 ：com.linbingcheng.easemob.FileTest.uploadFile();
