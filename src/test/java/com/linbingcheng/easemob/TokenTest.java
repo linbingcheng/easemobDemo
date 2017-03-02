@@ -8,9 +8,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Created by bingchenglin on 2017/2/28.
- */
+
 public class TokenTest {
 
     @Before

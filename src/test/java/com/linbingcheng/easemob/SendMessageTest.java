@@ -16,9 +16,7 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by linbingchneg on 2017/3/1.
- */
+
 public class SendMessageTest {
 
     @Before

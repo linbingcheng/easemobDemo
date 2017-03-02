@@ -12,9 +12,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Created by bingchenglin on 2017/3/1.
- */
 public class ChatGroupTest {
 
     @Before

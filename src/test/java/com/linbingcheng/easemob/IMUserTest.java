@@ -12,9 +12,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by bingchenglin on 2017/2/28.
- */
+
 public class IMUserTest {
 
     @Before

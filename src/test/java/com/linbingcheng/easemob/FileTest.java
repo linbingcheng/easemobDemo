@@ -10,9 +10,7 @@ import org.junit.Test;
 
 import java.io.File;
 
-/**
- * Created by linbingchneg on 2017/3/2.
- */
+
 public class FileTest {
 
     @Before

@@ -8,9 +8,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Created by linbingchneg on 2017/3/2.
- */
 public class ChatMessageTest {
 
     @Before
